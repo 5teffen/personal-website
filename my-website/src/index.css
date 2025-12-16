@@ -5,7 +5,8 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: rgba(254, 220, 220, 0.4);
+  background-color: #ffffff;
+  /* background-color: rgba(254, 220, 220, 0.4); */
   /* background-color: #242424; */
 
   font-synthesis: none;
@@ -59,7 +60,7 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
-    background-color: rgba(254, 220, 220, 0.4);
+    /* background-color: rgba(254, 220, 220, 0.4); */
   }
   a:hover {
     color: #747bff;
