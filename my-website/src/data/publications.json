@@ -1,0 +1,60 @@
+{
+    "first_author": [
+        {
+            "title": "UXCascade: Scalable Usability Testing with Simulated User Agents",
+            "authors": ["Steffen Holter", "Eunyee Koh", "Doga Dogan", "Gromit Chan"],
+            "venue": "[Under Review]",
+            "year": 2026
+        },        {
+            "title": "From Interactions to Intent: Classifying User Objectives from Provenance Logs",
+            "authors": ["Steffen Holter", "Tobias Stähle", "Arpit Narechania", "Mennatallah El-Assady"],
+            "venue": "[Under Review]",
+            "year": 2026
+
+        },
+        {
+            "title": "Towards Agency in Human-AI Collaboration",
+            "authors": ["Steffen Holter", "Caterina Moruzzi", "Mennatallah El-Assady"],
+            "venue": "IEEE Computer Graphics and Applications",
+            "year": 2025
+        },
+        {
+            "title": "Finding Needles in Document Haystacks: Augmenting Serendipitous Claim Retrieval Workflows",
+            "authors": ["Moritz Dück*", "Steffen Holter*", "Robin Chan", "Rita Sevastjanova", "Mennatallah El-Assady"],
+            "venue": "ACM Conference on Human Factors in Computing Systems (CHI)",
+            "year": 2025
+        },
+        {
+            "title": "Deconstructing Human-AI Collaboration: Agency, Interaction, and Adaptation",
+            "authors": ["Steffen Holter", "Mennatallah El-Assady"],
+            "venue": "Computer Graphics Forum",
+            "year": 2024
+        },
+        {
+            "title": "AdViCE: Aggregated Visual Counterfactual Explanations for Machine Learning Model Validation",
+            "authors": ["Oscar Gomez*", "Steffen Holter*", "Jun Yuan", "Enrico Bertini"],
+            "venue": "IEEE International Conference on Visualisation (VIS)",
+            "year": 2021
+        },
+        {
+            "title": "Relative Visual Localization for Unmanned Aerial Systems",
+            "authors": ["Steffen Holter", "Athanasios Tsoukalas", "Nikolaos Evangeliou", "Nikolaos Giakoumidis", "Anthony Tzes"],
+            "venue": "International Conference on Unmanned Aircraft Systems (ICUAS)",
+            "year": 2021,
+            "award": "best paper"
+        },
+        {
+            "title": "ViCE: Visual Counterfactual Explanations for Machine Learning Models",
+            "authors": [ "Oscar Gomez*","Steffen Holter*", "Jun Yuan", "Enrico Bertini"],
+            "venue": "ACM Conference on Intelligent User Interfaces (IUI)",
+            "year": 2020
+        }],
+
+    "collaboration" : [
+        {
+            "title": "Development of a Versatile Modular Platform for Aerial Manipulators",
+            "authors": ["Nikolaos Evangeliou", "Athanasios Tsoukalas", "Nikolaos Giakoumidis", "Steffen Holter", "Anthony Tzes"],
+            "venue": "Service Robotics, IntechOpen",
+            "year": 2020
+        }]
+}

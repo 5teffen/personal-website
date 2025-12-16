@@ -1,0 +1,52 @@
+.experience-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-align: left;
+}
+
+.experience-header {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.experience-company {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.experience-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.experience-dates {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+  color: #666666;
+  margin: 0;
+  margin-left: auto;
+  line-height: 1.2;
+  text-align: right;
+}
+
+.experience-location {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+  color: #666666;
+  margin: 0;
+  line-height: 1.2;
+  text-align: left;
+}
+

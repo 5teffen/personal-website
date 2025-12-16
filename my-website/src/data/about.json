@@ -1,0 +1,197 @@
+{
+    "about": "I work at the intersection of HCI and responsible AI, studying how people collaborate with increasingly agentic AI systems in complex tasks. I design and develop interactive interfaces that adapt to practitioner needs in decision-making and beyond.", 
+    
+    "education": [{
+            "school": "ETH Zurich",
+            "degree": "PhD in Computer Science",
+            "thesis": "Towards Agency in Human-AI Collaboration",
+            "advisor": "Mennatallah El-Assady",
+            "start": "October 2023",
+            "end": "October 2027",
+            "start_year": 2023,
+            "end_year": 2027,
+            "location": "Zurich, Switzerland"
+        },
+        {
+            "company": "Imperial College London",
+            "degree": "MSc in Computing (AI and Machine Learning)",
+            "thesis": "Human-in-the Loop Explainable AI",
+            "start": "October 2020",
+            "end": "October 2021",
+            "start_year": 2020,
+            "end_year": 2021,
+            "location": "London, UK"
+        },
+        {
+            "company": "New York University",
+            "degree": "BSc in Electrical Engineering",
+            "minor": "Computer Science",
+            "thesis": "Variational Autoencoder Based Feature Extraction and Data Visualisation",
+            "start": "August2014",
+            "end": "May 2019",
+            "start_year": 2014,
+            "end_year": 2019,
+            "location": "New York City, USA"
+        }
+    ],
+    
+    "experience": {
+        "professional": [{
+            "company": "Adobe Research",
+            "title": "Research Scientist Intern",
+            "team": "Experience & Evaluation Lab",
+            "location": "San Jose, CA, USA",
+            "advisor": ["Doga Dogan", "Gromit Chen", "Eunyee Koh"],
+            "start": "June 2025",
+            "end": "September 2025",
+            "start_year": 2025,
+            "end_year": 2025,
+            "description":[
+                "Developed persona-based browser agents for automated usability testing of website prototypes",
+                "Built an interactive interface to communicate agent reasoning and decision processes to UX professionals, enabling interpretable and data-driven design evaluation"
+            ],
+            "url": "https://research.adobe.com/"
+        },
+        {
+            "company": "Starship Technologies",
+            "title": "Senior Software Engineer",
+            "team": "Autonomous Driving",
+            "location": "Tallinn, Estonia",
+            "advisor": [],
+            "start": "October 2021",
+            "end": "September 2023",
+            "start_year": 2021,
+            "end_year": 2023,
+            "description":[
+                "Responsibilities spanned the machine learning pipeline, from coordinating data annotation to training models and putting them into production on a worldwide fleet of autonomous delivery robots",
+                "Developed and maintained custom state-of-the-art deep learning models for object detection, vehicle tracking and semantic segmentation"
+            ],
+            "url": "https://starship.xyz/"
+        }],
+        
+        "research": [{
+            "company": "Imperial College Brain & Behaviour Lab",
+            "title": "Research Assistant",
+            "location": "London, UK",
+            "advisor": ["A. Aldo Faisal"],
+            "start": "March 2021",
+            "end": "September 2021",
+            "description": [
+                "Used a reinforcement learning inspired approach to create a framework that learns customized user specific explanations based on individual behaviour and interactions with AI systems",
+                "Formulated, designed, and conducted experiments introducing the human as an agent in AI assisted sequential decision making"
+            ],
+            "url": "https://faisallab.org/"
+            },
+        {
+            "company": "NYUAD Robotics Lab",
+            "title": "Research Fellow",
+            "location": "Abu Dhabi, UAE",
+            "advisor": ["Anthony Tzes"],
+            "start": "September 2019",
+            "end": "June 2020",
+            "description": [
+                "My research aimed to improve area coverage control for a swarm of collaborative drones",
+                "Focused on using 360-degree spherical cameras to perform relative UAV localisation",
+                "Implemented computer vision algorithms to identify and track neighbouring drones"
+            ],
+            "url": "https://nyuad.nyu.edu/en/research/faculty-labs-and-projects/robotics-and-intelligent-systems-control-laboratory.html"
+        },
+        {
+            "company": "NYU VIDA Lab",
+            "title": "Research Assistant",
+            "location": "New York City, USA",
+            "advisor": ["Enrico Bertini"],
+            "start": "June 2018",
+            "end": "August 2018",
+            "description": [
+                "Worked to develop efficient visual analytics tools to understand and explain machine learning models",
+                "Designed and implemented a novel method for generating counterfactual explanations to increase interpretability at both global and local level"
+            ],
+            "url": "https://vida.engineering.nyu.edu/"
+        }]
+        },
+    
+    "awards": [
+        {
+            "title": "ICUAS 2021 Best Paper Award",
+            "year": 2021,
+            "url": "https://uasconferences.com/2024_icuas/icuas-best-paper-awards/"
+        },
+        {
+            "title": "Microsoft Foreign Studies Master's Scholarship",
+            "year": 2020
+        },
+        {
+            "title": "Post-Graduate Research Fellowship",
+            "year": 2019,
+            "url": "https://nyuad.nyu.edu/en/academics/undergraduate/undergraduate-research/tamayyuz-research-fellowship/program-highlights.html"
+        },
+        {
+            "title": "Phi Beta Kappa National Honour Society",
+            "year": 2019,
+            "url": "https://www.pbk.org/"
+        },
+        {
+            "title": "New York University Founders' Day Award",
+            "year": 2019,
+            "url": "https://www.nyu.edu/students/student-information-and-resources/registration-records-and-graduation/graduation-and-diplomas/graduation-honors.html"
+
+        },
+        {
+            "title": "FICO Explainable Machine Learning competition",
+            "rank": "Honorable Mention",
+            "year": 2018,
+            "url": "https://investors.fico.com/news-releases/news-release-details/fico-announces-winners-inaugural-xml-challenge"
+        }
+    ],
+        
+    "teaching": {
+        
+    },
+
+    "skills": [
+        {
+            "name": "Python",
+            "rating": 3
+        },
+        {
+            "name": "C++",
+            "rating": 1
+        },
+        {
+            "name": "Full-stack",
+            "rating": 2
+        }
+    ],
+
+    "grants": {
+        "organization": "InnoSuisse",
+        "title": "PolypAI",
+        "role": "Contributed to the ideation and writing of the grant that has supported four of my projects.",
+        "grant_number": "2107391",
+        "amount": "300 000 CHF",
+        "PI": "Prof. Mennatallah El-Assady, Prof. Dr. med. Micheal Soyka"
+    },
+
+    "students": [
+        {
+            "name": "Carlo Simoni",
+            "project": "GraphWise: An Interactive, AI-assisted Platform for Learning Graph Algorithms",
+            "level": "BSc Thesis",
+            "school": "ETH Zurich"
+        },
+        {
+            "name": "Dang Khiem Nguyen",
+            "project": "PolypLearn: Automatic Detection of Nasal Polyps",
+            "level": "BSc Thesis",
+            "school": "ETH Zurich"
+        },
+        {
+            "name": "Maria Gkoulta",
+            "project": "BioFitViz: Interactive Biometric Data Analysis",
+            "level": "Semester Project",
+            "school": "ETH Zurich"
+        }]
+
+
+    }
