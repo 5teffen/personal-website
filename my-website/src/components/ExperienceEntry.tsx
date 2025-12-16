@@ -6,23 +6,23 @@ interface ExperienceEntryProps {
   location: string
   start: string
   end: string
-  start_year: number
-  end_year: number
+  // start_year: number
+  // end_year: number
 }
 
 function ExperienceEntry({ 
   company, 
   title, 
   location, 
-  start_year, 
-  end_year
+  // start_year, 
+  // end_year
 }: ExperienceEntryProps) {
-  const formatYears = () => {
-    if (start_year === end_year) {
-      return start_year.toString()
-    }
-    return `${start_year} - ${end_year}`
-  }
+  // const formatYears = () => {
+  //   if (start_year === end_year) {
+  //     return start_year.toString()
+  //   }
+  //   return `${start_year} - ${end_year}`
+  // }
 
   return (
     <div className="experience-entry">

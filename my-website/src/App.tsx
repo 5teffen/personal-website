@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import Skills from './components/Skills'
+// import Skills from './components/Skills'
 import EducationEntry from './components/EducationEntry'
 import ExperienceEntry from './components/ExperienceEntry'
 import PublicationEntry from './components/PublicationEntry'
@@ -8,10 +8,10 @@ import aboutData from './data/about.json'
 import publicationsData from './data/publications.json'
 import backgroundImage from './assets/image.png'
 
-interface Skill {
-  name: string
-  rating: number
-}
+// interface Skill {
+//   name: string
+//   rating: number
+// }
 
 interface Education {
   school?: string
@@ -42,7 +42,7 @@ interface Experience {
 function App() {
   const [about, setAbout] = useState<string>('')
   const [education, setEducation] = useState<Education[]>([])
-  const [skills, setSkills] = useState<Skill[]>([])
+  // const [skills, setSkills] = useState<Skill[]>([])
   const [publications, setPublications] = useState<Publication[]>([])
   const [experience, setExperience] = useState<Experience[]>([])
 
@@ -58,9 +58,9 @@ function App() {
     setEducation(edu)
 
     // Load skills data
-    if (Array.isArray(aboutData.skills)) {
-      setSkills(aboutData.skills)
-    }
+    // if (Array.isArray(aboutData.skills)) {
+    //   setSkills(aboutData.skills)
+    // }
 
     // Load all publications, sorted by year descending
     const allPubs: Publication[] = [
@@ -170,8 +170,8 @@ function App() {
                         location={exp.location}
                         start={exp.start}
                         end={exp.end}
-                        start_year={exp.start_year}
-                        end_year={exp.end_year}
+                        // start_year={exp.start_year}
+                        // end_year={exp.end_year}
                       />
                     ))}
                   </div>
