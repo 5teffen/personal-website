@@ -145,8 +145,8 @@
 
 .about-text-container .all-text {
   text-align: justify;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  /* letter-spacing: 0.5px; */
+  /* text-transform: uppercase; */
 }
 
 
@@ -339,7 +339,129 @@
 
 
 @media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+
+  .content-box {
+    padding: 1rem;
+  }
+
   .inner-grid {
-    grid-template-columns: 5% 1fr 5%;
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 0;
+    background-position: center top;
+    background-size: 300px 330px;
+  }
+
+  /* All panels stack in single column with reordered layout */
+  .name-panel {
+    grid-column: 1;
+    grid-row: 1;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Links go right after name */
+  .left-content-1 {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .about-panel {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+
+  .right-content-1 {
+    grid-column: 1;
+    grid-row: 4;
+    margin-top: 0.75rem;
+  }
+
+  .left-content-2 {
+    display: none;
+  }
+
+  .right-content-2 {
+    grid-column: 1;
+    grid-row: 6;
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  .right-content-3 {
+    grid-column: 1;
+    grid-row: 7;
+    margin-top: 0.75rem;
+  }
+
+  .left-content-3 {
+    grid-column: 1;
+    grid-row: 8;
+    margin-top: 0;
+    height: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .right-content-4 {
+    grid-column: 1;
+    grid-row: 9;
+    margin-top: 0.75rem;
+  }
+
+  .one-box {
+    height: auto;
+    min-height: auto;
+  }
+
+  .first-box {
+    height: auto;
+  }
+
+  .limiter {
+    max-height: none;
+  }
+
+  .links-container {
+    justify-content: flex-start;
+    margin-bottom: 0;
+  }
+
+  .about-text-container {
+    max-width: 100%;
+  }
+
+  /* Header spacing adjustments - consistent spacing for all headers */
+  .section-title-container {
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+
+  .about-panel .section-title {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  /* Adjust font sizes for mobile */
+  .first-name {
+    font-size: 36px;
+  }
+
+  .last-name {
+    font-size: 64px;
+  }
+
+  .section-title {
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
