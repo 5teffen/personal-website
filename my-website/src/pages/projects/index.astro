@@ -1,0 +1,74 @@
+---
+/** /projects/, one entry per project page, newest first. */
+import { Image } from "astro:assets";
+import ProjectLayout from "../../components/project/ProjectLayout.astro";
+import Footer from "../../components/project/Footer.astro";
+import { publishedProjects } from "../../lib/projects";
+
+const entries = await publishedProjects();
+const canonical = new URL("/projects/", Astro.site).toString();
+---
+<ProjectLayout
+  title="Projects, Steffen Holter"
+  description="Research projects by Steffen Holter, each with a live figure, the paper, code and data."
+  canonical={canonical}
+>
+  <main class="page">
+    <header class="index-header">
+      <h1>Projects</h1>
+    </header>
+    <ul class="project-list wide">
+      {entries.map((entry) => (
+        <li>
+          <a class="project-card" href={`/projects/${entry.id}/`}>
+            <Image src={entry.data.hero.poster} alt="" width={480} class="thumb" />
+            <div class="text">
+              <h2>{entry.data.title}</h2>
+              {entry.data.subtitle && <p class="subtitle">{entry.data.subtitle}</p>}
+              <p class="summary">{entry.data.summary}</p>
+              {entry.data.venue && <p class="venue">{entry.data.venue}</p>}
+              {entry.data.draft && <p class="venue">Draft, hidden in the production build</p>}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+  <Footer />
+</ProjectLayout>
+
+<style>
+  .index-header { padding: var(--space-4) 0 var(--space-3); }
+  .index-header h1 {
+    font-size: var(--step-4);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    margin: 0;
+  }
+  .project-list { list-style: none; margin: 0; padding: 0; }
+  .project-list li { border-top: 1px solid var(--rule); }
+  .project-card {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .thumb {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-small);
+    background: var(--surface);
+  }
+  .project-card h2 { font-size: var(--step-2); font-weight: 500; line-height: 1.1; margin: 0; }
+  .project-card:hover h2 { text-decoration: underline; text-underline-offset: 0.15em; text-decoration-thickness: 1px; }
+  .subtitle { font-style: italic; color: var(--ink-muted); margin: 0.25rem 0 0; }
+  .summary { margin: var(--space-2) 0 var(--space-1); max-width: var(--measure); }
+  .venue { font-family: var(--font-sans); font-size: var(--step--1); color: var(--ink-muted); margin: 0; }
+  @media (max-width: 40rem) {
+    .project-card { grid-template-columns: 1fr; }
+  }
+</style>

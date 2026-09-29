@@ -1,0 +1,116 @@
+---
+/**
+ * The link row, always in the order Paper, Demo, Video, Code, Data, BibTeX.
+ * Links that are not set are omitted. BibTeX opens an inline panel with a copy button.
+ */
+import { orderedLinks } from "../../lib/project.mjs";
+
+interface Props {
+  project: any;
+}
+const { project } = Astro.props;
+const links = orderedLinks(project);
+const panelId = `bibtex-${project.slug}`;
+---
+<nav class="link-row" aria-label="Project links">
+  <ul>
+    {links.map((l) => (
+      <li>
+        {l.key === "bibtex" ? (
+          <button type="button" class="bibtex-toggle" aria-expanded="false" aria-controls={panelId}>
+            {l.label}
+          </button>
+        ) : (
+          <a href={l.url} data-link={l.key}>{l.label}</a>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>
+{project.bibtex && (
+  <div class="bibtex-panel" id={panelId} hidden>
+    <pre><code>{project.bibtex.trim()}</code></pre>
+    <button type="button" class="bibtex-copy">Copy BibTeX</button>
+    <span class="bibtex-status" role="status" aria-live="polite"></span>
+  </div>
+)}
+
+<script>
+  for (const toggle of document.querySelectorAll<HTMLButtonElement>(".bibtex-toggle")) {
+    const panel = document.getElementById(toggle.getAttribute("aria-controls") ?? "");
+    if (!panel) continue;
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!open));
+      panel.hidden = open;
+    });
+    const copy = panel.querySelector<HTMLButtonElement>(".bibtex-copy");
+    const status = panel.querySelector<HTMLElement>(".bibtex-status");
+    copy?.addEventListener("click", async () => {
+      const text = panel.querySelector("code")?.textContent ?? "";
+      try {
+        await navigator.clipboard.writeText(text);
+        if (status) status.textContent = "Copied";
+      } catch {
+        if (status) status.textContent = "Copy failed. Select the text above instead.";
+      }
+      setTimeout(() => { if (status) status.textContent = ""; }, 2500);
+    });
+  }
+</script>
+
+<style>
+  .link-row ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    font-weight: 500;
+  }
+  .link-row li { margin: 0; display: flex; align-items: center; }
+  .link-row li + li::before {
+    content: "";
+    width: 1px;
+    height: 1em;
+    background: var(--rule);
+    margin: 0 0.9rem;
+  }
+  .link-row a,
+  .bibtex-toggle {
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.35rem 0;
+  }
+  .link-row a:hover,
+  .bibtex-toggle:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+  .bibtex-toggle {
+    font: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .bibtex-toggle[aria-expanded="true"] { text-decoration: underline; }
+
+  .bibtex-panel { margin-top: var(--space-2); }
+  .bibtex-panel pre { margin: 0 0 var(--space-1); white-space: pre; }
+  .bibtex-copy {
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 500;
+    color: var(--accent-ink);
+    background: var(--accent);
+    border: 0;
+    border-radius: var(--radius-small);
+    padding: 0.4rem 0.75rem;
+    cursor: pointer;
+  }
+  .bibtex-status {
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    color: var(--ink-muted);
+    margin-left: var(--space-1);
+  }
+</style>

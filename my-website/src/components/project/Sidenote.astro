@@ -1,0 +1,11 @@
+---
+/**
+ * A Tufte style sidenote. Numbered automatically in document order.
+ * Usage in MDX: <Sidenote>Text of the note.</Sidenote> placed right after the word it annotates.
+ */
+const store = (Astro.locals as any);
+store.__sidenoteCount = (store.__sidenoteCount ?? 0) + 1;
+const n = store.__sidenoteCount;
+const id = `sn-${n}`;
+---
+<label for={id} class="sidenote-ref" aria-label={`Sidenote ${n}`}>{n}</label><input type="checkbox" id={id} class="sidenote-toggle" /><span class="sidenote"><span class="sidenote-number">{n}</span><slot /></span>

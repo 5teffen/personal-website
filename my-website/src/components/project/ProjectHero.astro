@@ -1,0 +1,126 @@
+---
+/**
+ * The first screen of every project page, rendered inside a `.page` grid.
+ * Order is fixed. Title, subtitle, one-sentence summary, authors, link row, hero media.
+ *
+ * Hero media priority
+ *   1. anything passed in the "media" slot, which the page fills from the
+ *      project's Hero.astro when it has one (for example a live figure)
+ *   2. project.hero.video, a looping muted MP4 or WebM with the poster as fallback
+ *   3. project.hero.poster, a still image, which every project must have
+ */
+import { Image, getImage } from "astro:assets";
+import LinkRow from "./LinkRow.astro";
+import { authorName } from "../../lib/project.mjs";
+
+interface Props {
+  project: any;
+  /** True when the page fills the "media" slot with a live figure. */
+  live?: boolean;
+}
+const { project, live = false } = Astro.props;
+
+const affiliations: string[] = project.affiliations ?? [];
+const showAffilNumbers = affiliations.length > 1;
+// Astro.slots.has() reports a slot even when its content is conditional and empty,
+// so the page says explicitly whether it passed a live figure.
+const hasMediaSlot = live && Astro.slots.has("media");
+const hero = project.hero;
+const posterForVideo = hero.video ? await getImage({ src: hero.poster, width: 1600 }) : null;
+---
+<header class="project-header">
+  <h1 class="project-title">{project.title}</h1>
+  {project.subtitle && <p class="project-subtitle">{project.subtitle}</p>}
+  <p class="project-summary">{project.summary}</p>
+
+  <div class="project-byline">
+    <p class="authors">
+      {project.authors.map((a: any, i: number) => (
+        <>
+          <span class="author">
+            {a.url ? <a href={a.url}>{authorName(a)}</a> : authorName(a)}
+            {showAffilNumbers && a.affiliations?.length > 0 && <sup>{a.affiliations.join(",")}</sup>}
+          </span>{i < project.authors.length - 1 && ", "}
+        </>
+      ))}
+    </p>
+    {affiliations.length > 0 && (
+      <p class="affiliations">
+        {affiliations.map((name, i) => (
+          <span>{showAffilNumbers && <sup>{i + 1}</sup>}{name}</span>
+        ))}
+      </p>
+    )}
+    {project.venue && <p class="venue">{project.venue}</p>}
+  </div>
+
+  <LinkRow project={project} />
+</header>
+
+<div class="project-media wide">
+  {hasMediaSlot ? (
+    <slot name="media" />
+  ) : hero.video ? (
+    <video
+      src={hero.video}
+      poster={posterForVideo?.src}
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-label={hero.alt ?? project.title}
+    />
+  ) : (
+    <Image src={hero.poster} alt={hero.alt} widths={[800, 1200, 1600]} sizes="(max-width: 64rem) 100vw, 56rem" />
+  )}
+</div>
+
+<style>
+  .project-header {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-3);
+  }
+  .project-title {
+    font-size: var(--step-4);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 0;
+    font-variation-settings: "opsz" 72;
+  }
+  .project-subtitle {
+    font-size: var(--step-2);
+    line-height: 1.2;
+    margin: var(--space-1) 0 0;
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+  .project-summary {
+    font-size: var(--step-1);
+    line-height: 1.45;
+    margin: var(--space-4) 0 var(--space-3);
+    max-width: 34rem;
+  }
+  .project-byline {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    line-height: 1.5;
+    margin-bottom: var(--space-2);
+  }
+  .project-byline p { margin: 0; }
+  .authors a { color: var(--ink); text-decoration-color: var(--rule); }
+  .authors sup, .affiliations sup { font-size: 0.7em; margin-left: 0.1em; }
+  .affiliations, .venue { color: var(--ink-muted); }
+  .affiliations span + span { margin-left: 0.9rem; }
+
+  .project-media { margin: var(--space-2) 0 var(--space-4); }
+  .project-media > video,
+  .project-media > img {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius-small);
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+</style>

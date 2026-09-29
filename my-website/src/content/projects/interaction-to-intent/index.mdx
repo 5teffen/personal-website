@@ -1,0 +1,107 @@
+---
+# Everything above the first heading of the page comes from this block.
+# The build fails with a named field if a consistency rule is broken.
+# The same block feeds the social card, the README first screen and
+# CITATION.cff of the code repo (npm run export:repo interaction-to-intent).
+
+title: From Interaction to Intent
+subtitle: Inferring User Objectives from Provenance Logs
+
+# One plain-language sentence. No em dashes, no colons.
+summary: From mouse hovers alone, a model can tell which of seven analysis tasks a person is doing in a scatterplot of high-dimensional data, at about four times the rate of guessing.
+
+authors:
+  - { given: Steffen, family: Holter, url: "https://github.com/5teffen" }
+  - { given: Tobias, family: Stähle }
+  - { given: Arpit, family: Narechania }
+  - { given: Mennatallah, family: El-Assady }
+# TODO fill in. Reference them per author with `affiliations: [1, 2]`.
+# Numbers only appear when there is more than one.
+affiliations: []
+
+venue: Preprint, under review
+date: 2026-07-06
+
+# Rendered in the fixed order Paper, Demo, Video, Code, Data, BibTeX.
+# Leave a link out until it exists. It is omitted, never shown disabled.
+links:
+  paper: https://arxiv.org/abs/2607.04501
+  # demo: https://demo.steffenholter.com/interaction-to-intent
+  code: https://github.com/5teffen/interaction-to-intent
+  data: https://doi.org/10.5281/zenodo.21207995
+
+bibtex: |
+  @misc{holter2026interaction,
+    title         = {From Interaction to Intent: Inferring User Objectives from Provenance Logs},
+    author        = {Holter, Steffen and St{\"a}hle, Tobias and Narechania, Arpit and El-Assady, Mennatallah},
+    year          = {2026},
+    eprint        = {2607.04501},
+    archivePrefix = {arXiv},
+    note          = {Under review}
+  }
+
+# For CITATION.cff, which GitHub shows as "Cite this repository".
+citation:
+  type: article
+  title: "From Interaction to Intent: Inferring User Objectives from Provenance Logs"
+  year: 2026
+  journal: "arXiv preprint arXiv:2607.04501"
+  url: https://arxiv.org/abs/2607.04501
+license: MIT
+
+hero:
+  # Still image, required. Rendered by `node scripts/render-poster.mjs` in this folder.
+  poster: ./poster.png
+  # video: /projects/interaction-to-intent/hero.mp4
+  alt: A hover trace moving across a scatterplot, colored by which analysis task the person is doing
+---
+
+{/*
+  Draft body text, written from the repository README and results/REFERENCE.md.
+  Every number below comes from REFERENCE.md. Check wording against the paper
+  before publishing, and swap in the abstract where marked.
+*/}
+
+## The question
+
+Visual analytics tools record every hover, click and selection a person makes. These provenance logs are usually kept for undo or for replaying a session later. We asked whether they also say something about intent, that is, whether a tool could work out what a person is trying to find while they are still looking.
+
+{/* TODO replace or follow this paragraph with the paper abstract */}
+
+## What people did
+
+Crowdworkers explored scatterplots of high-dimensional data, made with PCA, t-SNE and UMAP, and each was given one of seven analysis tasks such as naming a cluster, finding points similar to a given one, or comparing two clusters. We recorded every hover. The seven tasks fall into three broader patterns of movement<Sidenote>The grouping is defined from theory, not learned. Local exploration stays inside one neighbourhood, global scanning covers the whole plot, and comparative probing moves back and forth between regions.</Sidenote>, which the figure above shows as three color families.
+
+The data covers four source datasets. Models are trained on basketball, Pokémon and weather data and tested on recipes, which they never see during training.
+
+## Two models, two jobs
+
+The first stage classifies one complete hover sequence. An XGBoost model works from 39 summary features of the whole sequence, and a bidirectional GRU works from 24 features computed at every step.
+
+The second stage is the harder, live version of the problem. Several tasks are stitched into one session, and a forward-only GRU with a CRF layer labels the current task at every step using only the hovers seen so far. This is the model the replay figure imitates.
+
+## How well it works
+
+With seven tasks, chance is about 14 percent. Both first-stage models land around four times that.
+
+| Model | Labels | Cross-validation accuracy | Held-out recipes accuracy |
+|---|---|---|---|
+| XGBoost | 7 tasks | 0.549 | 0.621 |
+| BiGRU | 7 tasks | 0.568 | 0.598 |
+| XGBoost | 3 groups | 0.678 | 0.690 |
+| BiGRU | 3 groups | 0.692 | 0.730 |
+
+Labelling tasks live, in stitched sessions, is harder. The online model reaches a segment F1 of 0.40 with seven tasks and between 0.54 and 0.56 with three groups in cross-validation.
+
+Order matters. Shuffling the steps of each sequence lowers the BiGRU's macro F1 by 0.043, and removing the features that carry state across steps, such as revisits and coverage so far, lowers it by 0.096, the largest drop in any ablation.
+
+## Reproduce it
+
+The code turns the published dataset into every table and figure in the paper.
+
+```bash
+make data   # download the dataset from Zenodo
+make all    # reproduce every table and figure
+```
+
+Expected numbers are listed in the repository's `results/REFERENCE.md`.

@@ -1,0 +1,204 @@
+@import "@fontsource/newsreader/400.css";
+@import "@fontsource/newsreader/400-italic.css";
+@import "@fontsource/newsreader/500.css";
+@import "@fontsource/newsreader/600.css";
+@import "@fontsource/schibsted-grotesk/400.css";
+@import "@fontsource/schibsted-grotesk/500.css";
+@import "@fontsource/schibsted-grotesk/600.css";
+@import "./tokens.css";
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(2rem + env(safe-area-inset-top, 0px));
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+
+img, video, svg { max-width: 100%; height: auto; }
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-small);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Page grid. Text column on the left, margin column for sidenotes on the right. */
+.page {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--edge), 1fr)
+    [text-start] minmax(0, var(--measure))
+    [text-end] var(--gutter)
+    [margin-start] minmax(0, var(--margin-col))
+    [margin-end] minmax(var(--edge), 1fr)
+    [full-end];
+  padding-bottom: var(--space-5);
+}
+.page > * { grid-column: text; min-width: 0; }
+.page > .wide { grid-column: text-start / margin-end; }
+.page > .full { grid-column: full; }
+
+@media (max-width: 64rem) {
+  .page {
+    grid-template-columns:
+      [full-start] var(--edge)
+      [text-start] minmax(0, 1fr)
+      [text-end margin-start] 0
+      [margin-end] var(--edge)
+      [full-end];
+    column-gap: 0;
+  }
+}
+
+/* Prose */
+h1, h2, h3, h4 {
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+h2 {
+  font-size: var(--step-2);
+  margin: var(--space-5) 0 var(--space-2);
+}
+h3 {
+  font-size: var(--step-1);
+  margin: var(--space-4) 0 var(--space-1);
+}
+p, ul, ol { margin: 0 0 var(--space-2); }
+p { text-wrap: pretty; }
+li + li { margin-top: 0.25em; }
+strong { font-weight: 600; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: var(--space-4) 0;
+}
+
+blockquote {
+  margin: var(--space-3) 0;
+  padding-left: var(--space-2);
+  border-left: 2px solid var(--rule);
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+code, pre { font-family: var(--font-mono); font-size: 0.82em; }
+:not(pre) > code {
+  background: var(--surface);
+  padding: 0.1em 0.3em;
+  border-radius: var(--radius-small);
+}
+pre {
+  background: var(--surface);
+  padding: var(--space-2);
+  overflow-x: auto;
+  border-radius: var(--radius-small);
+  line-height: 1.5;
+}
+
+/* Tables read as data, so they are set in the sans. No tabular-nums here,
+   because Schibsted Grotesk's tnum feature also widens the decimal point and
+   comma, which renders 0.549 as "0 . 549". Use .num for integer-only columns. */
+.page table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  margin: var(--space-3) 0;
+}
+.page th, .page td {
+  text-align: left;
+  padding: 0.45rem 1.1rem 0.45rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  white-space: nowrap;
+}
+.page th { font-weight: 600; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Sidenotes. Float into the margin on wide screens, toggle inline on narrow ones. */
+.sidenote-ref {
+  font-family: var(--font-sans);
+  font-size: 0.7em;
+  vertical-align: super;
+  line-height: 0;
+  color: var(--accent);
+}
+label.sidenote-ref { cursor: default; }
+.sidenote-toggle { display: none; }
+/* Absolutely positioned rather than floated. Every child of .page is a grid
+   item and so its own formatting context, which means a float stays inside its
+   paragraph and stretches it, leaving a gap before the next one. With top left
+   at auto the note keeps its static vertical position, on the line of its
+   reference, and only moves sideways into the margin column. */
+.page > * { position: relative; }
+.sidenote {
+  position: absolute;
+  right: calc(-1 * (var(--margin-col) + var(--gutter)));
+  width: var(--margin-col);
+  margin-top: 0.3rem;
+  font-family: var(--font-sans);
+  font-size: var(--step--2);
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+.sidenote-number { color: var(--accent); margin-right: 0.3em; }
+
+@media (max-width: 64rem) {
+  label.sidenote-ref { cursor: pointer; }
+  .sidenote {
+    display: none;
+    position: static;
+    width: auto;
+    margin: var(--space-1) 0 var(--space-2);
+    padding-left: var(--space-2);
+    border-left: 2px solid var(--rule);
+  }
+  .sidenote-toggle:checked + .sidenote { display: block; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

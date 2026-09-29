@@ -1,0 +1,97 @@
+---
+/**
+ * Wraps every page under /projects/. Owns the head (meta, social tags,
+ * favicon, analytics) and the site header, which links back to the homepage.
+ */
+import "../../styles/base.css";
+import { SITE_OWNER } from "../../lib/project.mjs";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  home?: { label: string; url: string } | null;
+  favicon?: string;
+  analytics?: { umami?: { src: string; websiteId: string } } | null;
+  type?: "website" | "article";
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogImageAlt,
+  home = SITE_OWNER,
+  favicon = "◌",
+  analytics = null,
+  type = "website",
+} = Astro.props;
+
+const faviconSvg = `data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${favicon}</text></svg>`,
+)}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={faviconSvg} />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:width" content="1200" />}
+    {ogImage && <meta property="og:image:height" content="630" />}
+    {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    {analytics?.umami && (
+      <script is:inline defer src={analytics.umami.src} data-website-id={analytics.umami.websiteId}></script>
+    )}
+    <slot name="head" />
+  </head>
+  <body>
+    {home && (
+      <header class="site-header">
+        <a class="home-link" href={home.url}>{home.label}</a>
+        <nav class="site-nav" aria-label="Site">
+          <a href="/projects/">Projects</a>
+          <slot name="header-extra" />
+        </nav>
+      </header>
+    )}
+    <slot />
+  </body>
+</html>
+
+<style>
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--edge);
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+  }
+  .home-link {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .home-link:hover, .site-nav a:hover { text-decoration: underline; }
+  .site-nav { display: flex; gap: var(--space-2); }
+  .site-nav a { color: var(--ink-muted); text-decoration: none; }
+</style>

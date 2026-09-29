@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-// import Skills from './components/Skills'
-import EducationEntry from './components/EducationEntry'
-import ExperienceEntry from './components/ExperienceEntry'
-import PublicationEntry from './components/PublicationEntry'
-import aboutData from './data/about.json'
-import publicationsData from './data/publications.json'
-import backgroundImage from './assets/image.png'
+import './Home.css'
+// import Skills from './Skills'
+import EducationEntry from './EducationEntry'
+import ExperienceEntry from './ExperienceEntry'
+import PublicationEntry from './PublicationEntry'
+import aboutData from '../../data/about.json'
+import publicationsData from '../../data/publications.json'
+import backgroundImageAsset from './assets/image.png'
+
+// Astro turns image imports into metadata objects, plain Vite into URL strings.
+const backgroundImage: string =
+  typeof backgroundImageAsset === 'string' ? backgroundImageAsset : (backgroundImageAsset as { src: string }).src
 
 // interface Skill {
 //   name: string
@@ -26,6 +29,7 @@ interface Publication {
   year: number
   status?: string
   award?: string
+  project?: string
 }
 
 interface Experience {
@@ -39,44 +43,24 @@ interface Experience {
   description?: string[]
 }
 
-function App() {
-  const [about, setAbout] = useState<string>('')
-  const [education, setEducation] = useState<Education[]>([])
-  // const [skills, setSkills] = useState<Skill[]>([])
-  const [publications, setPublications] = useState<Publication[]>([])
-  const [experience, setExperience] = useState<Experience[]>([])
+// Rendered once at build time by Astro, so the data is read directly
+// instead of through useState and useEffect, which never run on the server.
+function Home() {
+  const about: string = aboutData.about
 
-  useEffect(() => {
-    // Load about text
-    setAbout(aboutData.about)
-    
-    // Load education data
-    const edu: Education[] = aboutData.education.map(edu => ({
-      school: edu.school || edu.company,
-      degree: edu.degree
-    }))
-    setEducation(edu)
+  const education: Education[] = aboutData.education.map(edu => ({
+    school: edu.school || edu.company,
+    degree: edu.degree
+  }))
 
-    // Load skills data
-    // if (Array.isArray(aboutData.skills)) {
-    //   setSkills(aboutData.skills)
-    // }
+  // All publications, sorted by year descending
+  const publications: Publication[] = [
+    ...publicationsData.first_author,
+    ...publicationsData.collaboration
+  ].sort((a, b) => b.year - a.year)
 
-    // Load all publications, sorted by year descending
-    const allPubs: Publication[] = [
-      ...publicationsData.first_author,
-      ...publicationsData.collaboration
-    ]
-    
-    const sortedPubs = allPubs.sort((a, b) => b.year - a.year)
-    
-    setPublications(sortedPubs)
-
-    // Load experience data - only professional
-    const exp: Experience[] = aboutData.experience.professional
-    setExperience(exp)
-  }, [])
-
+  // Only professional experience
+  const experience: Experience[] = aboutData.experience.professional
 
   return (
     <>
@@ -95,7 +79,7 @@ function App() {
               <div className="one-box left-content-1 limiter">
                 <div className="links-container">
                   <div className="links-list">
-              <a className="social-link" href="mailto:steffen.holter@inf.ethz.ch.com">
+              <a className="social-link" href="mailto:steffen.holter@inf.ethz.ch">
                         <i className="fas fa-envelope icon" style={{ color: '#515151' }}></i>
                     </a>     
                 <a className="social-link" href="https://github.com/5teffen">
@@ -199,6 +183,7 @@ function App() {
                         year={pub.year}
                         status={pub.status}
                         award={pub.award}
+                        project={pub.project}
                       />
                     ))}
                   </div>
@@ -213,4 +198,4 @@ function App() {
   )
 }
 
-export default App
+export default Home

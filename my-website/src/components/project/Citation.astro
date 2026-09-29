@@ -1,0 +1,9 @@
+---
+/** The closing citation block. Every project page ends with it. */
+interface Props { project: any }
+const { project } = Astro.props;
+---
+<section class="citation wide" id="citation" aria-labelledby="citation-heading">
+  <h2 id="citation-heading">Citation</h2>
+  <pre><code>{project.bibtex.trim()}</code></pre>
+</section>

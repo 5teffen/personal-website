@@ -1,0 +1,69 @@
+/*
+  Design tokens for every page under /projects/.
+  All project pages share this file, so a change here reaches all of them on the next deploy.
+*/
+:root {
+  /* Paper and ink */
+  --paper: #fcfcfb;
+  --ink: #1b1f24;
+  --ink-muted: #5a626b;
+  --rule: #dadde0;
+  --surface: #f2f3f4;
+  --accent: #2c45c9;
+  --accent-ink: #ffffff;
+  --focus: #2c45c9;
+
+  /* Type */
+  --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans: "Schibsted Grotesk", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Scale, a 1.2 ratio anchored at 19px body text */
+  --step--2: 0.8125rem;
+  --step--1: 0.9375rem;
+  --step-0: 1.1875rem;
+  --step-1: 1.425rem;
+  --step-2: 1.71rem;
+  --step-3: 2.2rem;
+  --step-4: clamp(2.3rem, 1.5rem + 3vw, 3.5rem);
+
+  /* Layout */
+  --measure: 38rem;
+  --margin-col: 15rem;
+  --gutter: 2.5rem;
+  --edge: clamp(1.25rem, 4vw, 3rem);
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+
+  --radius-small: 3px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #15181c;
+    --ink: #e6e8ea;
+    --ink-muted: #9aa3ac;
+    --rule: #2d3238;
+    --surface: #1d2126;
+    --accent: #8fa2ff;
+    --accent-ink: #10131a;
+    --focus: #8fa2ff;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #15181c;
+  --ink: #e6e8ea;
+  --ink-muted: #9aa3ac;
+  --rule: #2d3238;
+  --surface: #1d2126;
+  --accent: #8fa2ff;
+  --accent-ink: #10131a;
+  --focus: #8fa2ff;
+  color-scheme: dark;
+}

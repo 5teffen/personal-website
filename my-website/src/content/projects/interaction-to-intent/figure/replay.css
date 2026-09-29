@@ -1,0 +1,175 @@
+/* Task colors. Hue family encodes the coarse group, lightness the fine task. */
+.i2i-replay {
+  --task-1: #1d7a64;
+  --task-2: #3ba784;
+  --task-3: #7cc3a6;
+  --task-0: #b85a12;
+  --task-4: #e59a45;
+  --task-5: #5e43b0;
+  --task-6: #9e86de;
+  --family-0: #2e9477;
+  --family-1: #d9822b;
+  --family-2: #7a5fcc;
+  --i2i-point: #c3c8cd;
+  --i2i-visited: #7d858e;
+
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: var(--step--1, 0.9375rem);
+  color: var(--ink, #1b1f24);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .i2i-replay {
+    --task-1: #3fb393; --task-2: #6fd0ad; --task-3: #a9e3c9;
+    --task-0: #e08a45; --task-4: #f3bd7c;
+    --task-5: #957cf0; --task-6: #c2b1f5;
+    --family-0: #4fc4a0; --family-1: #f0a25a; --family-2: #a992ec;
+    --i2i-point: #434a52; --i2i-visited: #8d96a0;
+  }
+}
+:root[data-theme="dark"] .i2i-replay {
+  --task-1: #3fb393; --task-2: #6fd0ad; --task-3: #a9e3c9;
+  --task-0: #e08a45; --task-4: #f3bd7c;
+  --task-5: #957cf0; --task-6: #c2b1f5;
+  --family-0: #4fc4a0; --family-1: #f0a25a; --family-2: #a992ec;
+  --i2i-point: #434a52; --i2i-visited: #8d96a0;
+}
+
+.i2i-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+@media (max-width: 44rem) {
+  .i2i-top { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+}
+
+.i2i-plot {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 0.82;
+  border: 1px solid var(--rule, #dadde0);
+  border-radius: 3px;
+  background: var(--paper, #fcfcfb);
+}
+.i2i-plot .pt { fill: var(--i2i-point); }
+.i2i-plot .pt.visited { fill: var(--i2i-visited); }
+.i2i-plot .cursor {
+  fill: none;
+  stroke: var(--ink, #1b1f24);
+  stroke-width: 0.45;
+}
+
+.i2i-side h3 {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: var(--step--1, 0.9375rem);
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+  letter-spacing: 0;
+}
+.i2i-side .i2i-sub {
+  color: var(--ink-muted, #5a626b);
+  font-size: var(--step--2, 0.8125rem);
+  margin: 0 0 0.9rem;
+}
+
+.i2i-bars { list-style: none; margin: 0; padding: 0; }
+.i2i-bars li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 3.2rem;
+  column-gap: 0.6rem;
+  align-items: center;
+  margin: 0 0 0.55rem;
+}
+.i2i-bars .name {
+  grid-column: 1 / -1;
+  font-size: var(--step--2, 0.8125rem);
+  line-height: 1.25;
+  margin-bottom: 0.2rem;
+  display: flex;
+  gap: 0.45rem;
+  align-items: baseline;
+}
+.i2i-bars .actual {
+  color: var(--ink-muted, #5a626b);
+  font-weight: 400;
+}
+.i2i-bars li.is-actual .name { font-weight: 600; }
+.i2i-bars .track {
+  height: 0.55rem;
+  background: var(--surface, #f2f3f4);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.i2i-bars .fill {
+  height: 100%;
+  transform-origin: left center;
+  transition: transform 120ms linear;
+}
+.i2i-bars .pct { text-align: right; font-variant-numeric: tabular-nums; font-size: var(--step--2, 0.8125rem); }
+
+.i2i-timeline { margin-top: 1.5rem; }
+.i2i-timeline svg {
+  display: block;
+  width: 100%;
+  height: 3.1rem;
+  cursor: ew-resize;
+  touch-action: none;
+}
+.i2i-timeline .rowlabel {
+  font-size: 9px;
+  fill: var(--ink-muted, #5a626b);
+}
+.i2i-timeline .playhead { stroke: var(--ink, #1b1f24); stroke-width: 1.5; }
+
+.i2i-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1rem;
+}
+.i2i-play {
+  font: inherit;
+  font-weight: 500;
+  min-width: 5.2rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--ink, #1b1f24);
+  border-radius: 3px;
+  background: var(--ink, #1b1f24);
+  color: var(--paper, #fcfcfb);
+  cursor: pointer;
+}
+.i2i-seg {
+  display: inline-flex;
+  border: 1px solid var(--rule, #dadde0);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.i2i-seg button {
+  font: inherit;
+  font-size: var(--step--2, 0.8125rem);
+  padding: 0.4rem 0.7rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink, #1b1f24);
+  cursor: pointer;
+}
+.i2i-seg button + button { border-left: 1px solid var(--rule, #dadde0); }
+.i2i-seg button[aria-pressed="true"] {
+  background: var(--surface, #f2f3f4);
+  font-weight: 600;
+}
+.i2i-step {
+  color: var(--ink-muted, #5a626b);
+  font-size: var(--step--2, 0.8125rem);
+  margin-left: auto;
+}
+.i2i-note {
+  margin: 1rem 0 0;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--family-1);
+  background: var(--surface, #f2f3f4);
+  font-size: var(--step--2, 0.8125rem);
+  color: var(--ink, #1b1f24);
+}

@@ -1,0 +1,62 @@
+---
+/**
+ * The one template every project page uses. Content comes from
+ * src/content/projects/<slug>/index.mdx, and an optional Hero.astro in the same
+ * folder supplies a live figure for the first screen.
+ */
+import { render } from "astro:content";
+import { getImage } from "astro:assets";
+import ProjectLayout from "../../../components/project/ProjectLayout.astro";
+import ProjectHero from "../../../components/project/ProjectHero.astro";
+import Citation from "../../../components/project/Citation.astro";
+import Footer from "../../../components/project/Footer.astro";
+import Figure from "../../../components/project/Figure.astro";
+import Sidenote from "../../../components/project/Sidenote.astro";
+import { pageUrl } from "../../../lib/project.mjs";
+import { publishedProjects } from "../../../lib/projects";
+
+export async function getStaticPaths() {
+  const entries = await publishedProjects();
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+// Per-project hero components, found by folder name.
+const heroes = import.meta.glob<{ default: any }>("../../../content/projects/*/Hero.astro", { eager: true });
+
+const { entry } = Astro.props;
+const project = { ...entry.data, slug: entry.id };
+const { Content } = await render(entry);
+const Hero = heroes[`../../../content/projects/${entry.id}/Hero.astro`]?.default;
+
+const canonical = pageUrl(project);
+const ogImage = new URL(`/projects/${entry.id}/og.png`, Astro.site).toString();
+const posterFallback = Hero ? await getImage({ src: project.hero.poster, width: 1600 }) : null;
+---
+<ProjectLayout
+  title={project.subtitle ? `${project.title}, ${project.subtitle}` : project.title}
+  description={project.summary}
+  canonical={canonical}
+  ogImage={ogImage}
+  ogImageAlt={project.hero.alt}
+  analytics={project.analytics}
+  type="article"
+>
+  <main class="page">
+    <ProjectHero project={project} live={Boolean(Hero)}>
+      {Hero && (
+        <Fragment slot="media">
+          <Hero />
+          <noscript>
+            <img src={posterFallback!.src} alt={project.hero.alt} />
+          </noscript>
+        </Fragment>
+      )}
+    </ProjectHero>
+
+    {/* Available in every index.mdx without an import */}
+    <Content components={{ Figure, Sidenote }} />
+
+    <Citation project={project} />
+  </main>
+  <Footer />
+</ProjectLayout>

@@ -1,0 +1,29 @@
+---
+import { SITE_OWNER } from "../../lib/project.mjs";
+
+interface Props {
+  home?: { label: string; url: string } | null;
+  note?: string;
+}
+const { home = SITE_OWNER, note } = Astro.props;
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <p>
+    {home && <a href={home.url}>{home.label}</a>}
+    {note && <span>{note}</span>}
+    <span>{year}</span>
+  </p>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--rule);
+    padding: var(--space-3) var(--edge) var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    color: var(--ink-muted);
+  }
+  .site-footer p { margin: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .site-footer a { color: var(--ink-muted); }
+</style>

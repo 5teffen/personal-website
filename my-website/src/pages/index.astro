@@ -1,0 +1,35 @@
+---
+/**
+ * The homepage. The React components render once at build time, so the page
+ * ships as plain HTML with no JavaScript.
+ */
+import Home from "../components/home/Home.tsx";
+import "../components/home/global.css";
+import about from "../data/about.json";
+
+const title = "Steffen Holter";
+const description = about.about;
+const canonical = new URL("/", Astro.site).toString();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/jpeg" href="/frog.jpg" />
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+  </head>
+  <body>
+    <div id="root">
+      <Home />
+    </div>
+  </body>
+</html>
