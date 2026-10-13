@@ -17,6 +17,8 @@ const author = z
     name: z.string().optional(),
     url: url.optional(),
     orcid: z.string().optional(),
+    /** A footnote mark such as "*", explained in the project's `authorNotes`. */
+    mark: z.string().max(2).optional(),
     /** 1-based indexes into `affiliations`. Numbers only show when there are several. */
     affiliations: z.array(z.number().int().positive()).optional(),
   })
@@ -39,6 +41,8 @@ const projects = defineCollection({
 
         authors: z.array(author).min(1),
         affiliations: z.array(z.string()).default([]),
+        /** Explains author marks, for example "* Equal contribution". */
+        authorNotes: z.array(z.string()).default([]),
         venue: z.string().optional(),
 
         /** Sorts the /projects/ index, newest first. */
@@ -47,12 +51,13 @@ const projects = defineCollection({
         draft: z.boolean().default(false),
 
         // Rule 3. Only these keys are allowed, the order is fixed by LinkRow.
+        // Code is optional because not every paper has a public repo yet.
         links: z
           .object({
             paper: url.optional(),
             demo: url.optional(),
             video: url.optional(),
-            code: url,
+            code: url.optional(),
             data: url.optional(),
           })
           .strict(),

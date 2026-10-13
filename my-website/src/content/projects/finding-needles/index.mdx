@@ -1,0 +1,80 @@
+---
+title: Finding Needles in Document Haystacks
+subtitle: Augmenting Serendipitous Claim Retrieval Workflows
+
+# One plain-language sentence. No em dashes, no colons.
+summary: NEEDLE lets researchers search a large collection of papers one sentence at a time, read each claim in its context, and check which other claims support or contradict it.
+
+authors:
+  - { given: Moritz, family: Dück, mark: "*" }
+  - { given: Steffen, family: Holter, url: "https://github.com/5teffen", mark: "*" }
+  - { given: Robin Shing Moon, family: Chan }
+  - { given: Rita, family: Sevastjanova }
+  - { given: Mennatallah, family: El-Assady }
+affiliations:
+  - ETH Zurich
+authorNotes:
+  - "* Equal contribution"
+
+venue: ACM CHI 2025, Yokohama
+date: 2025-04-26
+
+links:
+  paper: https://doi.org/10.1145/3706598.3713715
+  # code: https://github.com/...
+
+bibtex: |
+  @inproceedings{dueck2025needles,
+    title     = {Finding Needles in Document Haystacks: Augmenting Serendipitous Claim Retrieval Workflows},
+    author    = {D{\"u}ck, Moritz and Holter, Steffen and Chan, Robin Shing Moon and Sevastjanova, Rita and El-Assady, Mennatallah},
+    booktitle = {Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems},
+    series    = {CHI '25},
+    year      = {2025},
+    publisher = {ACM},
+    address   = {Yokohama, Japan},
+    doi       = {10.1145/3706598.3713715}
+  }
+
+citation:
+  type: conference-paper
+  title: "Finding Needles in Document Haystacks: Augmenting Serendipitous Claim Retrieval Workflows"
+  year: 2025
+  conference: "CHI Conference on Human Factors in Computing Systems (CHI '25)"
+  doi: 10.1145/3706598.3713715
+
+hero:
+  # Figure 1 of the paper. Swap for a short screen recording via `video` later.
+  poster: ./poster.png
+  alt: The NEEDLE interface, with a corpus overview, a close-reading view of a paper with highlighted claims, a search panel of ranked claims and a canvas where claims are linked
+---
+
+{/*
+  Draft body text, written from the paper in public/papers/finding-needles.pdf.
+  Every number below comes from the paper. Check the wording before publishing.
+*/}
+
+## The question
+
+Early in a research project, people skim a field to form and test hunches. With thousands of papers that means reading titles, abstracts and summaries, which hide the specific statements that matter. Reading everything closely does not scale either.
+
+We asked whether search could work on individual claims instead, while keeping each claim tied to the document it came from.
+
+## What we built
+
+NEEDLE treats every sentence in a corpus as a claim that can be found, read in context and kept. It supports three ways in, which came out of a year of workshops with medical researchers and, later, political scientists<Sidenote>The two domains read differently. Medical researchers care about outcomes and study design, political analysts about wording and tone, but both struggled with the same early, exploratory phase.</Sidenote>.
+
+- **Keyword search** retrieves single claims across the whole corpus, matching entities through domain ontologies rather than exact words.
+- **Hypothesis search** takes a full sentence and returns related claims.
+- **Consistency checking** ranks claims that support or contradict a statement, using natural language inference.
+
+A close-reading view shows each claim inside its paper, a corpus view shows where results sit across documents and years, and a canvas lets people arrange and link claims into an argument.
+
+## How well it works
+
+Ten researchers, five from medicine and five from political science, each solved two comparable 15-minute tasks, one with NEEDLE and one with their usual tools. The medical corpus held 3,000 open-access articles, the political one UN General Debate speeches from 2008 to 2022.
+
+With their own tools, most people skimmed titles and abstracts and copied passages into a text editor. With NEEDLE, 9 of 10 started from keyword search and most first collected many claims on the canvas before linking them. Participants singled out the canvas for structuring an argument. Some with prior knowledge of a topic felt abstracts were enough for short tasks, and pointed to NEEDLE for more specific questions.
+
+## Read more
+
+The [paper](https://doi.org/10.1145/3706598.3713715) covers the requirements, the retrieval pipeline, two use cases and the expert interviews.

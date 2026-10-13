@@ -40,6 +40,7 @@ const posterForVideo = hero.video ? await getImage({ src: hero.poster, width: 16
           <span class="author">
             {a.url ? <a href={a.url}>{authorName(a)}</a> : authorName(a)}
             {showAffilNumbers && a.affiliations?.length > 0 && <sup>{a.affiliations.join(",")}</sup>}
+            {a.mark && <sup class="mark">{a.mark}</sup>}
           </span>{i < project.authors.length - 1 && ", "}
         </>
       ))}
@@ -50,6 +51,9 @@ const posterForVideo = hero.video ? await getImage({ src: hero.poster, width: 16
           <span>{showAffilNumbers && <sup>{i + 1}</sup>}{name}</span>
         ))}
       </p>
+    )}
+    {project.authorNotes?.length > 0 && (
+      <p class="author-notes">{project.authorNotes.join(". ")}</p>
     )}
     {project.venue && <p class="venue">{project.venue}</p>}
   </div>
@@ -111,7 +115,10 @@ const posterForVideo = hero.video ? await getImage({ src: hero.poster, width: 16
   .project-byline p { margin: 0; }
   .authors a { color: var(--ink); text-decoration-color: var(--rule); }
   .authors sup, .affiliations sup { font-size: 0.7em; margin-left: 0.1em; }
-  .affiliations, .venue { color: var(--ink-muted); }
+  .affiliations, .venue, .author-notes { color: var(--ink-muted); }
+  .author-notes { font-size: var(--step--2); }
+  /* The serif has clearer * and † glyphs at superscript size than the sans. */
+  .authors sup.mark { font-family: var(--font-serif); font-size: 0.95em; margin-left: 0.05em; }
   .affiliations span + span { margin-left: 0.9rem; }
 
   .project-media { margin: var(--space-2) 0 var(--space-4); }

@@ -1,0 +1,82 @@
+---
+title: UXCascade
+subtitle: Scalable Usability Testing with Simulated User Agents
+
+# One plain-language sentence. No em dashes, no colons.
+summary: UXCascade turns the action logs and reasoning of many simulated users into a short list of usability issues that designers can inspect, fix and test again in one loop.
+
+authors:
+  - { given: Steffen, family: Holter, url: "https://github.com/5teffen", affiliations: [1], mark: "*" }
+  - { given: Eunyee, family: Koh, affiliations: [2] }
+  - { given: Mustafa Doga, family: Dogan, affiliations: [2], mark: "†" }
+  - { given: Gromit Yeuk-Yin, family: Chan, affiliations: [2], mark: "†" }
+affiliations:
+  - ETH Zurich
+  - Adobe Research
+authorNotes:
+  - "* Work done during an internship at Adobe Research"
+  - † Equal contribution and joint supervision
+
+venue: ACM UIST 2026, Detroit
+date: 2026-11-02
+
+links:
+  # The ACM DOI goes live with the proceedings. Switch to it then.
+  paper: https://arxiv.org/abs/2601.15777
+  # code: https://github.com/5teffen/uxcascade
+
+bibtex: |
+  @inproceedings{holter2026uxcascade,
+    title     = {UXCascade: Scalable Usability Testing with Simulated User Agents},
+    author    = {Holter, Steffen and Koh, Eunyee and Dogan, Mustafa Doga and Chan, Gromit Yeuk-Yin},
+    booktitle = {Proceedings of the 39th Annual ACM Symposium on User Interface Software and Technology},
+    series    = {UIST '26},
+    year      = {2026},
+    publisher = {ACM},
+    address   = {Detroit, MI, USA},
+    doi       = {10.1145/3830398.3830609}
+  }
+
+citation:
+  type: conference-paper
+  title: "UXCascade: Scalable Usability Testing with Simulated User Agents"
+  year: 2026
+  conference: "The 39th Annual ACM Symposium on User Interface Software and Technology (UIST '26)"
+  doi: 10.1145/3830398.3830609
+
+hero:
+  # Figure 1 of the paper. Swap for a short screen recording via `video` later.
+  poster: ./poster.png
+  alt: The UXCascade interface, with agent goals, trait analysis and an issue list on the left, issue details and a simulate step in the middle, and a page editor on the right
+---
+
+{/*
+  Draft body text, written from the camera-ready paper in public/papers/uxcascade.pdf.
+  Every number below comes from the paper. Check the wording before publishing.
+*/}
+
+## The question
+
+AI tools now let designers produce many versions of an interface in minutes, but testing each version with real people still takes days. Language model agents can stand in for users, browse a site with a goal and a persona, and explain what they are doing at every step. The problem is what comes out. A few dozen agent runs produce long action logs and reasoning traces that are tedious to read and hard to act on.
+
+We asked how to turn that output into findings a UX practitioner can use.
+
+## What we built
+
+UXCascade structures agent output into a five-stage workflow<Sidenote>The stages come from a formative study with UX practitioners, who asked for fast iteration, feedback from specific personas, issues tied to user goals, quick reruns and help prioritizing.</Sidenote>.
+
+1. **Explore** the goals agents pursued and which of them failed.
+2. **Observe** how failures spread across persona traits such as age or new versus returning visitors.
+3. **Isolate** concrete issues, each linked to the agent's reasoning, the page element and the step in its journey.
+4. **Propose** a fix by editing the page directly.
+5. **Evaluate** the fix by replaying the agents on the edited page.
+
+## How well it works
+
+Eight UX professionals, with 6.5 years of experience on average, looked for problems in a mock clothing shop seeded with 17 usability issues. Each used UXCascade and, in counterbalanced order, a usability report compiled from ten lay testers.
+
+Participants found slightly more seeded issues with UXCascade than with the report, 2.9 against 2.6 on average, though the difference was not significant with eight people. The agents on their own surfaced 9 of the 17 issues and the human report 11. They found different ones. The report was stronger on interaction problems, and the agents matched or beat it on communication and visual consistency, so simulation works best alongside human feedback rather than instead of it.
+
+## Read more
+
+The [paper](https://arxiv.org/abs/2601.15777) covers the formative study, the system design and the full study results.
