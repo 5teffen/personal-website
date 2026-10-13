@@ -1,4 +1,6 @@
 import './PublicationEntry.css'
+import PublicationLinks from './PublicationLinks'
+import type { PublicationLinkMap } from './PublicationLinks'
 
 interface PublicationEntryProps {
   title: string
@@ -7,6 +9,7 @@ interface PublicationEntryProps {
   year: number
   status?: string
   award?: string
+  links?: PublicationLinkMap
 }
 
 function PublicationEntry({ 
@@ -15,7 +18,8 @@ function PublicationEntry({
   venue, 
   year, 
   status,
-  award 
+  award,
+  links
 }: PublicationEntryProps) {
   const formatAuthors = (authors: string[]) => {
     return (
@@ -35,6 +39,7 @@ function PublicationEntry({
 
   return (
     <div className="publication-entry">
+      <PublicationLinks links={links} title={title} />
       <div className="publication-title">{title}</div>
       <div className="publication-authors">
         {formatAuthors(authors)}

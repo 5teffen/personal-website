@@ -1,0 +1,62 @@
+/* Temporary announcement above About: a light grey outline around a small title and the
+   message, at most the text measure wide (--text-measure). */
+.announcement {
+  position: relative;
+  width: fit-content; /* sized to its text, left-aligned (the page root centres inline content) */
+  max-width: var(--text-measure, 510px);
+  box-sizing: border-box;
+  margin-bottom: 2rem; /* air above ABOUT */
+  padding: 0.55rem 2.2rem 0.6rem 0.95rem; /* right side leaves room for the X */
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  background: transparent;
+  text-align: left;
+}
+
+/* Same look as the "Preprints & Manuscripts Under Review" label */
+.announcement-title {
+  margin: 0 0 0.15rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  color: #9a9a9a;
+}
+
+.announcement-text {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: #213547;
+}
+
+.announcement-close {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #9a9a9a;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.announcement-close:hover,
+.announcement-close:focus-visible {
+  background: #efefef;
+  color: #213547;
+  border-color: transparent;
+}
+
+.announcement-close:focus-visible {
+  outline: 2px solid #213547;
+  outline-offset: 1px;
+}

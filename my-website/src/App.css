@@ -1,7 +1,7 @@
 #root {
   max-width: 2200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem 2rem 2rem;
   text-align: center;
 }
 
@@ -23,24 +23,34 @@
 
 
 .content-box {
-  padding: 2rem;
+  padding: 1rem 2rem 2rem;
   border-radius: 12px;
   width: 100%;
+  box-sizing: border-box; /* without it the padding made the page 64px wider than the window */
 }
 
 
 
 .inner-grid {
+  --photo-size: 200px;
+  --photo-overlap: 30px;   /* "STEFFEN" tucks into the photo's lower right curve */
+  --name-row-height: calc(var(--photo-size) - var(--photo-overlap) + 48px + 100px);
   display: grid;
-  grid-template-columns: 0.6fr 1.4fr;          /* left | right (right is 20% wider) */
+  grid-template-columns: 0.6fr minmax(0, 1.4fr); /* left | right; the right column may shrink below its longest line */
   grid-template-rows: repeat(5, auto);   /* 5 rows for all sections */
-  column-gap: 6rem;
+  --grid-gutter: 6rem;
+  --header-height: 20px;
+  --header-space: 18px;    /* room above the photo for the CV accent, which sits on the photo's top line */
+  --text-measure: 510px;   /* width of the About, Education and Experience text; the CV accent ends on it too */
+  --last-name-size: 100px; /* HOLTER's line height, used to lift ABOUT onto STEFFEN's baseline */     /* shared with elements that hang off the right column */
+  column-gap: var(--grid-gutter);
   row-gap: 0rem;
   /* border: 1px solid rgba(0, 0, 0, 0.1); */
   border-radius: 8px;
   /* background: #ecebe272; */
   background-repeat: no-repeat;
-  background-position: 0 220px;
+  /* bubbles start just below the name row */
+  background-position: 0 calc(var(--header-space) + var(--name-row-height) + 20px);
   background-size: 400px 440px;
   position: relative;
 
@@ -57,7 +67,7 @@
 }
 
 .first-box{
-  height: 200px;
+  height: var(--name-row-height);
 }
 
 .name-panel  { 
@@ -71,6 +81,10 @@
 
 .about-panel { 
   grid-column: 2; grid-row: 1; 
+  position: relative; /* anchors the header accent */
+  /* bottom of ABOUT sits on the bottom of STEFFEN, one HOLTER line above the row bottom */
+  padding-bottom: calc(var(--last-name-size) + 1px); /* +1px: smaller type has a shallower descender */
+  box-sizing: border-box;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
@@ -126,6 +140,7 @@
 .right-content-1 { 
   grid-column: 2; 
   grid-row: 2; 
+  margin-top: calc(10px - var(--last-name-size));
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -138,7 +153,7 @@
   align-items: flex-start;
   flex-direction: row;
   width: 100%;
-  max-width: 510px;
+  max-width: var(--text-measure);
   align-self: flex-start;
   text-align: left;
 }
@@ -164,6 +179,7 @@
 .left-content-1 {
   grid-column: 1;
   grid-row: 2;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -209,7 +225,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 500px;
+  width: 100%;
+  max-width: var(--text-measure);
 }
 
 .right-content-3 { 
@@ -279,6 +296,32 @@
   width: 100%;
 }
 
+/* Label and hairline between published work and work under review.
+   The line uses the bubble grey; the label is a step darker so it stays legible. */
+.publications-divider {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.25rem 0;
+  text-align: left;
+}
+
+.publications-divider-label {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  color: #9a9a9a;
+}
+
+.publications-divider hr {
+  width: 100%;
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid #d9d9d9;
+}
+
 /* Experience Styles */
 .experience-text-container {
   display: flex;
@@ -301,6 +344,97 @@
 }
 
 
+/* Header accent: a short rule, the CV link, a short rule. The group ends on the text's
+   right edge (--text-measure from column 2's left edge) and the rule sits on the photo ring's top. */
+.site-header {
+  position: absolute;
+  top: calc(var(--header-height) / -2); /* centres the rule on the About panel's top, which is the photo's top */
+  left: 0;
+  width: min(var(--text-measure), 100%);
+  height: var(--header-height);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 1;
+}
+
+.site-header::before,
+.site-header::after {
+  content: "";
+  width: var(--accent-rule, 48px);
+  border-top: 1px solid #d9d9d9;
+}
+
+.name-panel,
+.about-panel {
+  margin-top: var(--header-space);
+}
+
+.cv-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 2px; /* echoes STEFFEN and the section titles */
+  margin-right: -2px;  /* cancels the trailing letter-space so both gaps match */
+  text-transform: uppercase;
+  color: #213547;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.cv-link:hover,
+.cv-link:focus-visible {
+  color: #000000;
+}
+
+.cv-link:hover span,
+.cv-link:focus-visible span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Year ranges on Education and Experience, pushed to the right edge of the entry */
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.entry-years {
+  margin-left: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  color: #666666;
+  white-space: nowrap;
+}
+
+/* Entries share the About text measure, so the years end on the same line as the justified text */
+.education-list,
+.experience-list {
+  max-width: var(--text-measure);
+}
+
+/* Profile photo: anchored to the left edge of column 1, name stays right-aligned */
+.profile-photo {
+  width: var(--photo-size);
+  height: var(--photo-size);
+  border-radius: 50%;
+  object-fit: cover;
+  box-sizing: border-box;
+  border: 6px solid #d9d9d9;
+  align-self: flex-start;
+  flex-shrink: 0;
+  margin-bottom: calc(-1 * var(--photo-overlap));
+}
+
 /* Text Styles */
 .all-text{
   font-family: Arial, Helvetica, sans-serif ;
@@ -316,7 +450,7 @@
 }
 
 .last-name{
-  font-size: 100px;
+  font-size: var(--last-name-size);
   line-height: 1;
   font-weight: 600;
   letter-spacing: 2px;
@@ -338,7 +472,8 @@
 
 
 
-@media (max-width: 768px) {
+/* Below 1000px the right column gets too narrow for the 42px headings, so the page stacks */
+@media (max-width: 1000px) {
   * {
     box-sizing: border-box;
   }
@@ -365,13 +500,31 @@
   }
 
   .inner-grid {
+    --text-measure: 100%; /* stacked: every text block uses the full column */
     grid-template-columns: 1fr;
     column-gap: 0;
     row-gap: 0;
-    background-position: center top;
-    background-size: 300px 330px;
+    /* the photo replaces the bubble backdrop on small screens (inline style needs !important) */
+    background-image: none !important;
     max-width: 100%;
     width: 100%;
+  }
+
+  /* On a phone About moves down, so the accent anchors to the grid and stays on the photo's top line */
+  .about-panel {
+    position: static;
+  }
+
+  .site-header {
+    top: calc(var(--header-space) - var(--header-height) / 2);
+    left: auto;
+    right: 0;
+    width: auto;
+  }
+
+  .profile-photo {
+    --photo-size: 160px;
+    margin-bottom: 1rem;
   }
 
   /* All panels stack in single column with reordered layout */
@@ -394,6 +547,7 @@
   .about-panel {
     grid-column: 1;
     grid-row: 3;
+    padding-bottom: 0;
     margin-top: 2rem;
     margin-bottom: 0;
   }
@@ -453,6 +607,12 @@
   .links-container {
     justify-content: flex-start;
     margin-bottom: 0;
+  }
+
+  /* On a phone the location moves under the company so the years stay on the first line */
+  .experience-location {
+    order: 3;
+    flex-basis: 100%;
   }
 
   .about-text-container {

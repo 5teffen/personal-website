@@ -4,9 +4,13 @@ import './App.css'
 import EducationEntry from './components/EducationEntry'
 import ExperienceEntry from './components/ExperienceEntry'
 import PublicationEntry from './components/PublicationEntry'
+import Announcement from './components/Announcement'
+import { formatYears } from './utils/years'
+import type { PublicationLinkMap } from './components/PublicationLinks'
 import aboutData from './data/about.json'
 import publicationsData from './data/publications.json'
 import backgroundImage from './assets/image.png'
+import profileImage from './assets/profile.jpg'
 
 // interface Skill {
 //   name: string
@@ -17,6 +21,8 @@ interface Education {
   school?: string
   company?: string
   degree: string
+  start_year?: number
+  end_year?: number
 }
 
 interface Publication {
@@ -26,7 +32,15 @@ interface Publication {
   year: number
   status?: string
   award?: string
+  links?: PublicationLinkMap
+  firstAuthor?: boolean
 }
+
+const isUnderReview = (pub: Publication) => /under review/i.test(pub.venue)
+
+/** Newest first. Within a year, first-authored before collaborations, then JSON order. */
+const byYearThenAuthorship = (a: Publication, b: Publication) =>
+  b.year - a.year || Number(!!b.firstAuthor) - Number(!!a.firstAuthor)
 
 interface Experience {
   company: string
@@ -43,7 +57,8 @@ function App() {
   const [about, setAbout] = useState<string>('')
   const [education, setEducation] = useState<Education[]>([])
   // const [skills, setSkills] = useState<Skill[]>([])
-  const [publications, setPublications] = useState<Publication[]>([])
+  const [published, setPublished] = useState<Publication[]>([])
+  const [underReview, setUnderReview] = useState<Publication[]>([])
   const [experience, setExperience] = useState<Experience[]>([])
 
   useEffect(() => {
@@ -53,7 +68,9 @@ function App() {
     // Load education data
     const edu: Education[] = aboutData.education.map(edu => ({
       school: edu.school || edu.company,
-      degree: edu.degree
+      degree: edu.degree,
+      start_year: edu.start_year,
+      end_year: edu.end_year,
     }))
     setEducation(edu)
 
@@ -62,15 +79,13 @@ function App() {
     //   setSkills(aboutData.skills)
     // }
 
-    // Load all publications, sorted by year descending
+    // Published work first, then work under review, each sorted by year and authorship
     const allPubs: Publication[] = [
-      ...publicationsData.first_author,
-      ...publicationsData.collaboration
+      ...publicationsData.first_author.map(p => ({ ...p, firstAuthor: true })),
+      ...publicationsData.collaboration.map(p => ({ ...p, firstAuthor: false })),
     ]
-    
-    const sortedPubs = allPubs.sort((a, b) => b.year - a.year)
-    
-    setPublications(sortedPubs)
+    setPublished(allPubs.filter(p => !isUnderReview(p)).sort(byYearThenAuthorship))
+    setUnderReview(allPubs.filter(isUnderReview).sort(byYearThenAuthorship))
 
     // Load experience data - only professional
     const exp: Experience[] = aboutData.experience.professional
@@ -85,11 +100,25 @@ function App() {
           <div className="content-box">
             <div className="inner-grid" style={{ backgroundImage: `url(${backgroundImage})` }}>
               <div className="one-box first-box name-panel">
+                <img className="profile-photo" src={profileImage} alt="Portrait of Steffen Holter" />
                 <p className="all-text first-name">Steffen</p>
                 <p className="all-text last-name">HOLTER</p>
               </div>
               <div className="one-box first-box about-panel">
-                 <p className="all-text section-title">About</p>
+                {/* Soft accent: a short rule, CV, a short rule, ending on the text's right edge */}
+                <header className="site-header">
+                  <a className="cv-link" href={aboutData.cv} target="_blank" rel="noopener noreferrer">
+                    <span>CV</span>
+                  </a>
+                </header>
+                {aboutData.looking_for && (
+                  <Announcement
+                    label="Looking for:"
+                    lead={aboutData.looking_for.lead}
+                    topics={aboutData.looking_for.topics}
+                  />
+                )}
+                <p className="all-text section-title">About</p>
               </div>
 
               <div className="one-box left-content-1 limiter">
@@ -150,6 +179,7 @@ function App() {
                         school={edu.school}
                         company={edu.company}
                         degree={edu.degree}
+                        years={formatYears(edu.start_year, edu.end_year)}
                       />
                     ))}
                   </div>
@@ -168,10 +198,7 @@ function App() {
                         company={exp.company}
                         title={exp.title}
                         location={exp.location}
-                        start={exp.start}
-                        end={exp.end}
-                        // start_year={exp.start_year}
-                        // end_year={exp.end_year}
+                        years={formatYears(exp.start_year, exp.end_year)}
                       />
                     ))}
                   </div>
@@ -190,16 +217,17 @@ function App() {
               <div className="one-box right-content-4">
                 <div className="publications-text-container">
                   <div className="publications-list">
-                    {publications.map((pub, index) => (
-                      <PublicationEntry
-                        key={index}
-                        title={pub.title}
-                        authors={pub.authors}
-                        venue={pub.venue}
-                        year={pub.year}
-                        status={pub.status}
-                        award={pub.award}
-                      />
+                    {published.map(pub => (
+                      <PublicationEntry key={pub.title} {...pub} />
+                    ))}
+                    {underReview.length > 0 && published.length > 0 && (
+                      <div className="publications-divider">
+                        <p className="publications-divider-label">Preprints &amp; Manuscripts Under Review</p>
+                        <hr />
+                      </div>
+                    )}
+                    {underReview.map(pub => (
+                      <PublicationEntry key={pub.title} {...pub} />
                     ))}
                   </div>
                 </div>

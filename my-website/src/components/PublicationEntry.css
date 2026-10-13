@@ -1,4 +1,5 @@
 .publication-entry {
+  position: relative; /* anchors the link icons in the gutter */
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
