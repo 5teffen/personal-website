@@ -1,4 +1,6 @@
 import './PublicationEntry.css'
+import PublicationLinks from './PublicationLinks'
+import type { PublicationLinkMap } from './PublicationLinks'
 
 interface PublicationEntryProps {
   title: string
@@ -7,8 +9,7 @@ interface PublicationEntryProps {
   year: number
   status?: string
   award?: string
-  /** Slug of a page under /projects/, shown as a link when set */
-  project?: string
+  links?: PublicationLinkMap
 }
 
 function PublicationEntry({ 
@@ -18,7 +19,7 @@ function PublicationEntry({
   year, 
   status,
   award,
-  project
+  links
 }: PublicationEntryProps) {
   const formatAuthors = (authors: string[]) => {
     return (
@@ -38,9 +39,8 @@ function PublicationEntry({
 
   return (
     <div className="publication-entry">
-      <div className="publication-title">
-        {project ? <a className="publication-project" href={`/projects/${project}/`}>{title}</a> : title}
-      </div>
+      <PublicationLinks links={links} title={title} />
+      <div className="publication-title">{title}</div>
       <div className="publication-authors">
         {formatAuthors(authors)}
       </div>
@@ -50,9 +50,6 @@ function PublicationEntry({
           <span className="award-icon" title={award}>
             🏆
           </span>
-        )}
-        {project && (
-          <a className="publication-project-link" href={`/projects/${project}/`}>Project page</a>
         )}
       </div>
     </div>

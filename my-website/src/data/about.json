@@ -1,5 +1,7 @@
 {
     "about": "I work at the intersection of HCI and responsible AI, studying how people collaborate with increasingly agentic AI systems in complex tasks. I design and develop interactive interfaces that adapt to practitioner needs in decision-making and beyond.", 
+    "looking_for": {"lead": "PhD research internships (summer '27) on", "topics": ["human-AI collaboration", "agentic AI", "interactive systems"]},
+    "cv": "/cv.pdf",
     
     "education": [{
             "school": "ETH Zurich",
@@ -175,21 +177,52 @@
 
     "students": [
         {
+            "name": "Pascal Sowietzki",
+            "project": "Adaptive Agency: A Reinforcement Learning Framework for Agentic AI Systems",
+            "level": "MSc Thesis",
+            "year": "2026",
+            "school": "ETH Zurich"
+        },
+        {
+            "name": "Marie-Louise Dugua",
+            "project": "User-Conditioned Modeling of Subjective Attributes for Personalized Recommendation",
+            "level": "MSc Thesis",
+            "year": "2026",
+            "school": "ETH Zurich"
+        },
+        {
+            "name": "Erges Mema",
+            "project": "Interactive Neighborhood Correction in Projection Algorithms",
+            "level": "MSc Thesis",
+            "year": "2026",
+            "school": "ETH Zurich"
+        },
+        {
+            "name": "Alişer Ulaş Göner",
+            "project": "Interactive Clarification for Evolving Attribute Spaces in Multi-Criteria Text Ranking",
+            "level": "BSc Thesis",
+            "year": "2025",
+            "school": "ETH Zurich"
+        },
+        {
             "name": "Carlo Simoni",
             "project": "GraphWise: An Interactive, AI-assisted Platform for Learning Graph Algorithms",
             "level": "BSc Thesis",
+            "year": "2025",
             "school": "ETH Zurich"
         },
         {
             "name": "Dang Khiem Nguyen",
             "project": "PolypLearn: Automatic Detection of Nasal Polyps",
             "level": "BSc Thesis",
+            "year": "2025",
             "school": "ETH Zurich"
         },
         {
             "name": "Maria Gkoulta",
             "project": "BioFitViz: Interactive Biometric Data Analysis",
             "level": "Semester Project",
+            "year": "2024",
             "school": "ETH Zurich"
         }]
 

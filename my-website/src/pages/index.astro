@@ -1,9 +1,10 @@
 ---
 /**
  * The homepage. The React components render once at build time, so the page
- * ships as plain HTML with no JavaScript.
+ * ships as plain HTML. Only the announcement box hydrates, for its close button.
  */
 import Home from "../components/home/Home.tsx";
+import Announcement from "../components/home/Announcement.tsx";
 import "../components/home/global.css";
 import about from "../data/about.json";
 
@@ -29,7 +30,17 @@ const canonical = new URL("/", Astro.site).toString();
   </head>
   <body>
     <div id="root">
-      <Home />
+      <Home>
+        {about.looking_for && (
+          <Announcement
+            slot="announcement"
+            client:load
+            label="Looking for:"
+            lead={about.looking_for.lead}
+            topics={about.looking_for.topics}
+          />
+        )}
+      </Home>
     </div>
   </body>
 </html>

@@ -1,44 +1,57 @@
 {
     "first_author": [
         {
-            "title": "UXCascade: Scalable Usability Testing with Simulated User Agents",
-            "authors": ["Steffen Holter", "Eunyee Koh", "Doga Dogan", "Gromit Chan"],
+            "title": "Let Me Clarify: Interactive Modeling of Soft Attributes",
+            "links": {"project": "#", "pdf": "#", "code": "#"},
+            "authors": ["Steffen Holter", "Rita Sevastjanova", "Michaela Benk", "Mennatallah El-Assady"],
             "venue": "[Under Review]",
             "year": 2026
-        },        {
+        },       
+        {
             "title": "From Interactions to Intent: Classifying User Objectives from Provenance Logs",
-            "project": "interaction-to-intent",
+            "links": {"project": "/projects/interaction-to-intent/", "pdf": "https://arxiv.org/pdf/2607.04501", "code": "https://github.com/5teffen/interaction-to-intent", "dataset": "https://zenodo.org/records/21207995"},
             "authors": ["Steffen Holter", "Tobias Stähle", "Arpit Narechania", "Mennatallah El-Assady"],
             "venue": "[Under Review]",
             "year": 2026
-
         },
         {
+            "title": "UXCascade: Scalable Usability Testing with Simulated User Agents",
+            "links": {"project": "/projects/uxcascade/", "pdf": "/papers/uxcascade.pdf", "code": "#"},
+            "authors": ["Steffen Holter", "Eunyee Koh", "Doga Dogan", "Gromit Chan"],
+            "venue": "ACM Symposium on User Interface Software and Technology (UIST)",
+            "year": 2026
+        },       
+        {
             "title": "Towards Agency in Human-AI Collaboration",
+            "links": {"project": "#", "pdf": "/papers/towards-agency.pdf", "code": "#"},
             "authors": ["Steffen Holter", "Caterina Moruzzi", "Mennatallah El-Assady"],
             "venue": "IEEE Computer Graphics and Applications",
             "year": 2025
         },
         {
             "title": "Finding Needles in Document Haystacks: Augmenting Serendipitous Claim Retrieval Workflows",
+            "links": {"project": "/projects/finding-needles/", "pdf": "/papers/finding-needles.pdf", "code": "#"},
             "authors": ["Moritz Dück*", "Steffen Holter*", "Robin Chan", "Rita Sevastjanova", "Mennatallah El-Assady"],
             "venue": "ACM Conference on Human Factors in Computing Systems (CHI)",
             "year": 2025
         },
         {
             "title": "Deconstructing Human-AI Collaboration: Agency, Interaction, and Adaptation",
+            "links": {"project": "#", "pdf": "/papers/deconstructing-human-ai-collaboration.pdf", "code": "#"},
             "authors": ["Steffen Holter", "Mennatallah El-Assady"],
             "venue": "Computer Graphics Forum",
             "year": 2024
         },
         {
             "title": "AdViCE: Aggregated Visual Counterfactual Explanations for Machine Learning Model Validation",
+            "links": {"project": "#", "pdf": "/papers/advice.pdf", "code": "https://github.com/5teffen/ADViCE"},
             "authors": ["Oscar Gomez*", "Steffen Holter*", "Jun Yuan", "Enrico Bertini"],
             "venue": "IEEE International Conference on Visualisation (VIS)",
             "year": 2021
         },
         {
             "title": "Relative Visual Localization for Unmanned Aerial Systems",
+            "links": {"project": "#", "pdf": "https://arxiv.org/pdf/2003.01954", "code": "#"},
             "authors": ["Steffen Holter", "Athanasios Tsoukalas", "Nikolaos Evangeliou", "Nikolaos Giakoumidis", "Anthony Tzes"],
             "venue": "International Conference on Unmanned Aircraft Systems (ICUAS)",
             "year": 2021,
@@ -46,6 +59,7 @@
         },
         {
             "title": "ViCE: Visual Counterfactual Explanations for Machine Learning Models",
+            "links": {"project": "#", "pdf": "/papers/vice.pdf", "code": "https://github.com/nyuvis/ViCE"},
             "authors": [ "Oscar Gomez*","Steffen Holter*", "Jun Yuan", "Enrico Bertini"],
             "venue": "ACM Conference on Intelligent User Interfaces (IUI)",
             "year": 2020
@@ -54,8 +68,31 @@
     "collaboration" : [
         {
             "title": "Development of a Versatile Modular Platform for Aerial Manipulators",
+            "links": {"project": "#", "pdf": "#", "code": "#"},
             "authors": ["Nikolaos Evangeliou", "Athanasios Tsoukalas", "Nikolaos Giakoumidis", "Steffen Holter", "Anthony Tzes"],
             "venue": "Service Robotics, IntechOpen",
             "year": 2020
-        }]
+        },
+        {
+            "title": "Asking Your Advisor: Learning When to Consult Stronger Models in Agentic Systems",
+            "links": {"project": "#", "pdf": "#", "code": "#"},
+            "authors": ["Pascal Sowietzki", "Steffen Holter", "Yannick Metz", "Emil Kasper", "Mennatallah El-Assady"],
+            "venue": "[Under Review]",
+            "year": 2026
+        },
+        {
+            "title": "From Confidence to Contribution: How AI Peers Shape Metacognitive Processes in Groups",
+            "links": {"project": "#", "pdf": "#", "code": "#"},
+            "authors": ["Antonia Schlieder", "Steffen Holter", "Jan Rummel", "Filip Sadlo"],
+            "venue": "[Under Review]",
+            "year": 2026
+        },
+        {
+            "title": "PostHocer: Method-Agnostic Global Correction for Dimensionality Reduction",
+            "links": {"project": "#", "pdf": "#", "code": "#"},
+            "authors": ["Erges Mema", "Steffen Holter", "Hyeon Jeon", "Mennatallah El-Assady", "Rita Sevastjanova"],
+            "venue": "[Under Review]",
+            "year": 2026
+        }
+    ]
 }

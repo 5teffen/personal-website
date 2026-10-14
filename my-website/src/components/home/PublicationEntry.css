@@ -1,4 +1,5 @@
 .publication-entry {
+  position: relative; /* anchors the link icons in the gutter */
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
@@ -44,21 +45,3 @@
   font-size: 1rem;
 }
 
-
-/* Publications with a page under /projects/ link to it from the title and the venue line. */
-.publication-project {
-  color: inherit;
-  font-weight: inherit;
-  text-decoration: underline;
-  text-decoration-color: rgba(33, 53, 71, 0.3);
-  text-underline-offset: 0.18em;
-}
-.publication-project:hover {
-  color: inherit;
-  text-decoration-color: currentColor;
-}
-.publication-project-link {
-  font-weight: 500;
-  color: #2c45c9;
-}
-.publication-project-link:hover { color: #1f34a3; text-decoration: underline; }

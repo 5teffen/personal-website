@@ -1,0 +1,107 @@
+/*
+ * Publication links.
+ * Desktop: icons sit in the gutter, right-aligned to its centre line (half a
+ * gutter from the text), close enough to read as part of the entry. Hover or
+ * keyboard focus expands one icon into its full pill.
+ * Touch and narrow screens: full pills in a row below the entry.
+ */
+
+.pub-links {
+  --pub-link-size: 26px;
+  --pub-link-ink: #9a9a9a;
+  --pub-link-ink-active: #333333;
+  --pub-link-fill: #efefef;
+
+  position: absolute;
+  top: -4px; /* centers the icons on the title's first line */
+  right: calc(100% + var(--grid-gutter, 6rem) / 2); /* half a gutter: on the grid, but reads as part of the entry */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.pub-link {
+  display: flex;
+  align-items: center;
+  height: var(--pub-link-size);
+  min-width: var(--pub-link-size);
+  padding: 0 calc((var(--pub-link-size) - 14px) / 2);
+  box-sizing: border-box;
+  border-radius: 999px;
+  color: var(--pub-link-ink);
+  background: transparent;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: background-color 0.18s ease, color 0.18s ease, padding 0.18s ease;
+}
+
+.pub-link-icon {
+  width: 14px;
+  font-size: 13px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.pub-link-label {
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-width 0.22s ease, opacity 0.15s ease, margin 0.22s ease;
+}
+
+.pub-link:hover,
+.pub-link:focus-visible {
+  color: var(--pub-link-ink-active);
+  background: var(--pub-link-fill);
+  padding-right: 12px;
+}
+
+.pub-link:hover .pub-link-label,
+.pub-link:focus-visible .pub-link-label {
+  max-width: 6rem;
+  opacity: 1;
+  margin-left: 6px;
+}
+
+.pub-link:focus-visible {
+  outline: 2px solid #213547;
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pub-link,
+  .pub-link-label {
+    transition: none;
+  }
+}
+
+/* No gutter on narrow screens and no hover on touch: show the full pills. */
+@media (max-width: 1000px), (hover: none) { /* same breakpoint as the stacked layout in App.css */
+  .pub-links {
+    position: static;
+    order: 99; /* after the venue line */
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 6px;
+    margin-top: 0.4rem;
+  }
+
+  .pub-link {
+    background: var(--pub-link-fill);
+    color: #555555;
+    padding: 0 12px 0 10px;
+  }
+
+  .pub-link-label {
+    max-width: none;
+    opacity: 1;
+    margin-left: 6px;
+  }
+}

@@ -4,32 +4,16 @@ interface ExperienceEntryProps {
   company: string
   title: string
   location: string
-  start: string
-  end: string
-  // start_year: number
-  // end_year: number
+  years?: string
 }
 
-function ExperienceEntry({ 
-  company, 
-  title, 
-  location, 
-  // start_year, 
-  // end_year
-}: ExperienceEntryProps) {
-  // const formatYears = () => {
-  //   if (start_year === end_year) {
-  //     return start_year.toString()
-  //   }
-  //   return `${start_year} - ${end_year}`
-  // }
-
+function ExperienceEntry({ company, title, location, years }: ExperienceEntryProps) {
   return (
     <div className="experience-entry">
-      <div className="experience-header">
+      <div className="entry-header">
         <span className="experience-company">{company}</span>
         <span className="experience-location">{location}</span>
-        {/* <span className="experience-dates">{formatYears()}</span> */}
+        {years && <span className="entry-years">{years}</span>}
       </div>
       <span className="experience-title">{title}</span>
     </div>
@@ -37,4 +21,3 @@ function ExperienceEntry({
 }
 
 export default ExperienceEntry
-

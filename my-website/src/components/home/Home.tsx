@@ -1,15 +1,21 @@
+import type { ReactNode } from 'react'
 import './Home.css'
 // import Skills from './Skills'
 import EducationEntry from './EducationEntry'
 import ExperienceEntry from './ExperienceEntry'
 import PublicationEntry from './PublicationEntry'
+import { formatYears } from './years'
+import type { PublicationLinkMap } from './PublicationLinks'
 import aboutData from '../../data/about.json'
 import publicationsData from '../../data/publications.json'
 import backgroundImageAsset from './assets/image.png'
+import profileImageAsset from './assets/profile.jpg'
 
 // Astro turns image imports into metadata objects, plain Vite into URL strings.
-const backgroundImage: string =
-  typeof backgroundImageAsset === 'string' ? backgroundImageAsset : (backgroundImageAsset as { src: string }).src
+const src = (asset: unknown): string =>
+  typeof asset === 'string' ? asset : (asset as { src: string }).src
+const backgroundImage = src(backgroundImageAsset)
+const profileImage = src(profileImageAsset)
 
 // interface Skill {
 //   name: string
@@ -20,6 +26,8 @@ interface Education {
   school?: string
   company?: string
   degree: string
+  start_year?: number
+  end_year?: number
 }
 
 interface Publication {
@@ -29,8 +37,15 @@ interface Publication {
   year: number
   status?: string
   award?: string
-  project?: string
+  links?: PublicationLinkMap
+  firstAuthor?: boolean
 }
+
+const isUnderReview = (pub: Publication) => /under review/i.test(pub.venue)
+
+/** Newest first. Within a year, first-authored before collaborations, then JSON order. */
+const byYearThenAuthorship = (a: Publication, b: Publication) =>
+  b.year - a.year || Number(!!b.firstAuthor) - Number(!!a.firstAuthor)
 
 interface Experience {
   company: string
@@ -43,21 +58,33 @@ interface Experience {
   description?: string[]
 }
 
+interface HomeProps {
+  /**
+   * The announcement box. index.astro passes it in as a hydrated island, so its
+   * close button works while the rest of the page stays static HTML.
+   */
+  announcement?: ReactNode
+}
+
 // Rendered once at build time by Astro, so the data is read directly
 // instead of through useState and useEffect, which never run on the server.
-function Home() {
+function Home({ announcement }: HomeProps) {
   const about: string = aboutData.about
 
   const education: Education[] = aboutData.education.map(edu => ({
     school: edu.school || edu.company,
-    degree: edu.degree
+    degree: edu.degree,
+    start_year: edu.start_year,
+    end_year: edu.end_year,
   }))
 
-  // All publications, sorted by year descending
-  const publications: Publication[] = [
-    ...publicationsData.first_author,
-    ...publicationsData.collaboration
-  ].sort((a, b) => b.year - a.year)
+  // Published work first, then work under review, each sorted by year and authorship
+  const allPubs: Publication[] = [
+    ...publicationsData.first_author.map(p => ({ ...p, firstAuthor: true })),
+    ...publicationsData.collaboration.map(p => ({ ...p, firstAuthor: false })),
+  ]
+  const published = allPubs.filter(p => !isUnderReview(p)).sort(byYearThenAuthorship)
+  const underReview = allPubs.filter(isUnderReview).sort(byYearThenAuthorship)
 
   // Only professional experience
   const experience: Experience[] = aboutData.experience.professional
@@ -69,17 +96,25 @@ function Home() {
           <div className="content-box">
             <div className="inner-grid" style={{ backgroundImage: `url(${backgroundImage})` }}>
               <div className="one-box first-box name-panel">
+                <img className="profile-photo" src={profileImage} alt="Portrait of Steffen Holter" />
                 <p className="all-text first-name">Steffen</p>
                 <p className="all-text last-name">HOLTER</p>
               </div>
               <div className="one-box first-box about-panel">
-                 <p className="all-text section-title">About</p>
+                {/* Soft accent: a short rule, CV, a short rule, ending on the text's right edge */}
+                <header className="site-header">
+                  <a className="cv-link" href={aboutData.cv} target="_blank" rel="noopener noreferrer">
+                    <span>CV</span>
+                  </a>
+                </header>
+                {announcement}
+                <p className="all-text section-title">About</p>
               </div>
 
               <div className="one-box left-content-1 limiter">
                 <div className="links-container">
                   <div className="links-list">
-              <a className="social-link" href="mailto:steffen.holter@inf.ethz.ch">
+              <a className="social-link" href="mailto:steffen.holter@inf.ethz.ch.com">
                         <i className="fas fa-envelope icon" style={{ color: '#515151' }}></i>
                     </a>     
                 <a className="social-link" href="https://github.com/5teffen">
@@ -134,6 +169,7 @@ function Home() {
                         school={edu.school}
                         company={edu.company}
                         degree={edu.degree}
+                        years={formatYears(edu.start_year, edu.end_year)}
                       />
                     ))}
                   </div>
@@ -152,10 +188,7 @@ function Home() {
                         company={exp.company}
                         title={exp.title}
                         location={exp.location}
-                        start={exp.start}
-                        end={exp.end}
-                        // start_year={exp.start_year}
-                        // end_year={exp.end_year}
+                        years={formatYears(exp.start_year, exp.end_year)}
                       />
                     ))}
                   </div>
@@ -174,17 +207,17 @@ function Home() {
               <div className="one-box right-content-4">
                 <div className="publications-text-container">
                   <div className="publications-list">
-                    {publications.map((pub, index) => (
-                      <PublicationEntry
-                        key={index}
-                        title={pub.title}
-                        authors={pub.authors}
-                        venue={pub.venue}
-                        year={pub.year}
-                        status={pub.status}
-                        award={pub.award}
-                        project={pub.project}
-                      />
+                    {published.map(pub => (
+                      <PublicationEntry key={pub.title} {...pub} />
+                    ))}
+                    {underReview.length > 0 && published.length > 0 && (
+                      <div className="publications-divider">
+                        <p className="publications-divider-label">Preprints &amp; Manuscripts Under Review</p>
+                        <hr />
+                      </div>
+                    )}
+                    {underReview.map(pub => (
+                      <PublicationEntry key={pub.title} {...pub} />
                     ))}
                   </div>
                 </div>
