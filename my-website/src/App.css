@@ -379,23 +379,24 @@
   font-weight: 600;
   line-height: 1;
   letter-spacing: 2px; /* echoes STEFFEN and the section titles */
-  margin-right: -2px;  /* cancels the trailing letter-space so both gaps match */
+  /* padding grows a hover pill; the negative margin keeps the rules at the same distance from the letters */
+  padding: 0.35rem 0.6rem;
+  margin-left: -0.6rem;
+  margin-right: calc(-0.6rem - 2px); /* -2px cancels the trailing letter-space so both gaps match */
+  border-radius: 2.5rem;
+  background: transparent;
   text-transform: uppercase;
   color: #213547;
   text-decoration: none;
   white-space: nowrap;
-  transition: color 0.18s ease;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .cv-link:hover,
 .cv-link:focus-visible {
-  color: #000000;
-}
-
-.cv-link:hover span,
-.cv-link:focus-visible span {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  background: rgba(0, 0, 0, 0.05);
+  color: #213547;
+  text-decoration: none;
 }
 
 /* Year ranges on Education and Experience, pushed to the right edge of the entry */

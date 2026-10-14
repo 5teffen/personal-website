@@ -177,21 +177,52 @@
 
     "students": [
         {
+            "name": "Pascal Sowietzki",
+            "project": "Adaptive Agency: A Reinforcement Learning Framework for Agentic AI Systems",
+            "level": "MSc Thesis",
+            "year": "2026",
+            "school": "ETH Zurich"
+        },
+        {
+            "name": "Marie-Louise Dugua",
+            "project": "User-Conditioned Modeling of Subjective Attributes for Personalized Recommendation",
+            "level": "MSc Thesis",
+            "year": "2026",
+            "school": "ETH Zurich"
+        },
+        {
+            "name": "Erges Mema",
+            "project": "Interactive Neighborhood Correction in Projection Algorithms",
+            "level": "MSc Thesis",
+            "year": "2026",
+            "school": "ETH Zurich"
+        },
+        {
+            "name": "Alişer Ulaş Göner",
+            "project": "Interactive Clarification for Evolving Attribute Spaces in Multi-Criteria Text Ranking",
+            "level": "BSc Thesis",
+            "year": "2025",
+            "school": "ETH Zurich"
+        },
+        {
             "name": "Carlo Simoni",
             "project": "GraphWise: An Interactive, AI-assisted Platform for Learning Graph Algorithms",
             "level": "BSc Thesis",
+            "year": "2025",
             "school": "ETH Zurich"
         },
         {
             "name": "Dang Khiem Nguyen",
             "project": "PolypLearn: Automatic Detection of Nasal Polyps",
             "level": "BSc Thesis",
+            "year": "2025",
             "school": "ETH Zurich"
         },
         {
             "name": "Maria Gkoulta",
             "project": "BioFitViz: Interactive Biometric Data Analysis",
             "level": "Semester Project",
+            "year": "2024",
             "school": "ETH Zurich"
         }]
 

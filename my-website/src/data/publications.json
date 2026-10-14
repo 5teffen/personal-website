@@ -9,7 +9,7 @@
         },       
         {
             "title": "From Interactions to Intent: Classifying User Objectives from Provenance Logs",
-            "links": {"project": "/projects/interaction-to-intent/", "pdf": "#", "code": "#", "dataset": "#"},
+            "links": {"project": "/projects/interaction-to-intent/", "pdf": "https://arxiv.org/pdf/2607.04501", "code": "https://github.com/5teffen/interaction-to-intent", "dataset": "https://zenodo.org/records/21207995"},
             "authors": ["Steffen Holter", "Tobias Stähle", "Arpit Narechania", "Mennatallah El-Assady"],
             "venue": "[Under Review]",
             "year": 2026
