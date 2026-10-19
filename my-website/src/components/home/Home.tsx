@@ -104,7 +104,7 @@ function Home({ announcement }: HomeProps) {
                 {/* Soft accent: a short rule, CV, a short rule, ending on the text's right edge */}
                 <header className="site-header">
                   <a className="cv-link" href={aboutData.cv} target="_blank" rel="noopener noreferrer">
-                    <span>CV</span>
+                    <span>View CV</span>
                   </a>
                 </header>
                 {announcement}

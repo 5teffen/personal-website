@@ -30,13 +30,19 @@ export function isFilledLink(href?: string): href is string {
 export type LinkKey = (typeof LINK_TYPES)[number]['key']
 export type PublicationLinkMap = Partial<Record<LinkKey, string>>
 
+/**
+ * Project pages stay at their URLs, but the homepage icon is hidden for now.
+ * Remove a key from this set to show that link again.
+ */
+const HIDDEN_LINK_KEYS = new Set<LinkKey>(['project'])
+
 interface PublicationLinksProps {
   links?: PublicationLinkMap
   title: string
 }
 
 function PublicationLinks({ links, title }: PublicationLinksProps) {
-  const present = LINK_TYPES.filter(t => isFilledLink(links?.[t.key]))
+  const present = LINK_TYPES.filter(t => !HIDDEN_LINK_KEYS.has(t.key) && isFilledLink(links?.[t.key]))
   if (present.length === 0) return null
 
   return (
