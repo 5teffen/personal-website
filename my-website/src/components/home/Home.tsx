@@ -133,9 +133,18 @@ function Home({ announcement }: HomeProps) {
                 </div>
               </div>
 
-              <div className="one-box right-content-1 limiter">
+              <div className="one-box right-content-1">
                 <div className="about-text-container">
                   <p className="all-text">{about}</p>
+                  {aboutData.about_focus.map((paragraph, index) => (
+                    <p className="all-text" key={index}>
+                      {paragraph.map((part, partIndex) => (
+                        'href' in part
+                          ? <a href={part.href} key={partIndex}>{part.text}</a>
+                          : part.text
+                      ))}
+                    </p>
+                  ))}
                 </div>
                 <div className="section-title-container">
                   <p className="all-text section-title">Education</p>

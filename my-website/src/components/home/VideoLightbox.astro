@@ -1,0 +1,121 @@
+---
+/**
+ * Overlay player for YouTube links on the homepage.
+ * Any link with a data-video-id opens here instead of navigating away.
+ * Without JavaScript, or on a modifier-click, the link still opens YouTube.
+ * Closing the overlay unloads the iframe, which stops playback.
+ */
+---
+<dialog id="video-lightbox" class="vlb" aria-label="Video preview">
+  <button type="button" class="vlb-close" aria-label="Close video">
+    <i class="fas fa-times" aria-hidden="true"></i>
+  </button>
+  <div class="vlb-frame">
+    <iframe
+      autofocus
+      title="Video preview"
+      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+      allowfullscreen
+      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById("video-lightbox") as HTMLDialogElement | null;
+  const iframe = dialog?.querySelector("iframe");
+  let opener: HTMLElement | null = null;
+
+  if (dialog && iframe && typeof dialog.showModal === "function") {
+    document.addEventListener("click", (e) => {
+      const me = e as MouseEvent;
+      if (me.button !== 0 || me.metaKey || me.ctrlKey || me.shiftKey || me.altKey) return;
+      const link = (e.target as Element).closest<HTMLElement>("[data-video-id]");
+      if (!link) return;
+      e.preventDefault();
+      opener = link;
+      iframe.src = `https://www.youtube-nocookie.com/embed/${link.dataset.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+      dialog.showModal();
+      document.documentElement.classList.add("vlb-open");
+    });
+
+    dialog.querySelector(".vlb-close")?.addEventListener("click", () => dialog.close());
+
+    // A click on the dark backdrop, outside the video, closes the overlay.
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener("close", () => {
+      iframe.src = "about:blank";
+      document.documentElement.classList.remove("vlb-open");
+      opener?.focus();
+    });
+  }
+</script>
+
+<style is:global>
+  html.vlb-open { overflow: hidden; }
+
+  .vlb {
+    width: min(960px, 92vw);
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .vlb::backdrop {
+    background: rgba(10, 12, 14, 0.82);
+  }
+
+  .vlb[open] { animation: vlb-in 0.18s ease-out; }
+  .vlb[open]::backdrop { animation: vlb-fade 0.18s ease-out; }
+
+  .vlb-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    max-height: 82vh;
+    margin: 0 auto;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  }
+
+  .vlb-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .vlb-close {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .vlb-close:hover { background: rgba(255, 255, 255, 0.24); }
+  .vlb-close:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+  @keyframes vlb-in { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+  @keyframes vlb-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vlb[open], .vlb[open]::backdrop { animation: none; }
+  }
+</style>

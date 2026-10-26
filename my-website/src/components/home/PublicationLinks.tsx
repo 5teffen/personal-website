@@ -1,18 +1,20 @@
 import './PublicationLinks.css'
 
 /**
- * Link types and their fixed order. A publication lists only the links it has,
- * missing ones are omitted rather than shown greyed out.
+ * Link types in visual order from left to right. The row is right-aligned, so
+ * the last item sits nearest the title. Right to left that reads
+ * PDF, Video, Code, Dataset, Project.
  */
 export const LINK_TYPES = [
-  { key: 'project', label: 'Project', icon: 'fas fa-link' },
-  { key: 'demo', label: 'Demo', icon: 'fas fa-play' },
-  { key: 'pdf', label: 'PDF', icon: 'fas fa-file-pdf' },
-  { key: 'video', label: 'Video', icon: 'fas fa-film' },
-  { key: 'recording', label: 'Recording', icon: 'fas fa-video' },
-  { key: 'code', label: 'Code', icon: 'fas fa-code' },
-  { key: 'dataset', label: 'Dataset', icon: 'fas fa-database' },
   { key: 'slides', label: 'Slides', icon: 'fas fa-window-maximize' },
+  { key: 'project', label: 'Project', icon: 'fas fa-link' },
+  { key: 'dataset', label: 'Dataset', icon: 'fas fa-database' },
+  { key: 'code', label: 'Code', icon: 'fas fa-code' },
+  { key: 'recording', label: 'Recording', icon: 'fas fa-video' },
+  { key: 'demo', label: 'Demo', icon: 'fas fa-play' },
+  { key: 'video', label: 'Video', icon: 'fas fa-film' },
+  { key: 'preview', label: 'Preview', icon: 'fab fa-youtube' },
+  { key: 'pdf', label: 'PDF', icon: 'fas fa-file-pdf' },
 ] as const
 
 /**
@@ -25,6 +27,15 @@ export function isFilledLink(href?: string): href is string {
   if (v === '' || v.startsWith('#')) return false
   if (/^(todo|tbd|tba|n\/a|none|null)$/i.test(v)) return false
   return true
+}
+
+/**
+ * Returns the video ID when a link points to a YouTube video, otherwise null.
+ * Such links get a data-video-id so VideoLightbox can play them in an overlay.
+ */
+export function youtubeId(href: string): string | null {
+  const m = href.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/))([\w-]{11})/)
+  return m ? m[1] : null
 }
 
 export type LinkKey = (typeof LINK_TYPES)[number]['key']
@@ -50,12 +61,14 @@ function PublicationLinks({ links, title }: PublicationLinksProps) {
       {present.map(t => {
         const href = links![t.key]!
         const external = /^https?:\/\//.test(href)
+        const videoId = youtubeId(href)
         return (
           <li key={t.key}>
             <a
               className="pub-link"
               href={href}
               aria-label={t.label}
+              {...(videoId ? { 'data-video-id': videoId, 'aria-haspopup': 'dialog' as const } : {})}
               {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             >
               <i className={`${t.icon} pub-link-icon`} aria-hidden="true"></i>

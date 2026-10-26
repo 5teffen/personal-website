@@ -2,21 +2,21 @@
     "first_author": [
         {
             "title": "Let Me Clarify: Interactive Modeling of Soft Attributes",
-            "links": {"project": "#", "pdf": "#", "code": "#"},
+            "links": {"project": "#", "pdf": "https://arxiv.org/pdf/2610.20227", "code": "https://github.com/5teffen/let-me-clarify", "preview": "https://youtu.be/AGXMUtOc9fQ"},
             "authors": ["Steffen Holter", "Rita Sevastjanova", "Michaela Benk", "Mennatallah El-Assady"],
             "venue": "[Under Review]",
             "year": 2026
         },       
         {
             "title": "From Interactions to Intent: Classifying User Objectives from Provenance Logs",
-            "links": {"project": "/projects/interaction-to-intent/", "pdf": "https://arxiv.org/pdf/2607.04501", "code": "https://github.com/5teffen/interaction-to-intent", "dataset": "https://zenodo.org/records/21207995"},
+            "links": {"project": "/projects/interaction-to-intent/", "pdf": "https://arxiv.org/pdf/2607.04501", "code": "https://github.com/5teffen/interaction-to-intent", "dataset": "https://zenodo.org/records/21207995", "preview": "https://youtu.be/m5gVm2t3hTw"},
             "authors": ["Steffen Holter", "Tobias Stähle", "Arpit Narechania", "Mennatallah El-Assady"],
             "venue": "[Under Review]",
             "year": 2026
         },
         {
             "title": "UXCascade: Scalable Usability Testing with Simulated User Agents",
-            "links": {"project": "/projects/uxcascade/", "pdf": "/papers/uxcascade.pdf", "code": "#"},
+            "links": {"project": "/projects/uxcascade/", "pdf": "/papers/uxcascade.pdf", "code": "#", "preview": "https://youtu.be/gzUIN6SEX4I"},
             "authors": ["Steffen Holter", "Eunyee Koh", "Doga Dogan", "Gromit Chan"],
             "venue": "ACM Symposium on User Interface Software and Technology (UIST)",
             "year": 2026
@@ -30,14 +30,14 @@
         },
         {
             "title": "Finding Needles in Document Haystacks: Augmenting Serendipitous Claim Retrieval Workflows",
-            "links": {"project": "/projects/finding-needles/", "pdf": "/papers/finding-needles.pdf", "code": "#"},
+            "links": {"project": "/projects/finding-needles/", "pdf": "/papers/finding-needles.pdf", "code": "#", "preview": "https://youtu.be/rHdKpzCTi0E"},
             "authors": ["Moritz Dück*", "Steffen Holter*", "Robin Chan", "Rita Sevastjanova", "Mennatallah El-Assady"],
             "venue": "ACM Conference on Human Factors in Computing Systems (CHI)",
             "year": 2025
         },
         {
             "title": "Deconstructing Human-AI Collaboration: Agency, Interaction, and Adaptation",
-            "links": {"project": "#", "pdf": "/papers/deconstructing-human-ai-collaboration.pdf", "code": "#"},
+            "links": {"project": "#", "pdf": "/papers/deconstructing-human-ai-collaboration.pdf", "code": "#", "preview": "https://youtu.be/m4Yn47uflCQ"},
             "authors": ["Steffen Holter", "Mennatallah El-Assady"],
             "venue": "Computer Graphics Forum",
             "year": 2024
@@ -75,7 +75,7 @@
         },
         {
             "title": "Asking Your Advisor: Learning When to Consult Stronger Models in Agentic Systems",
-            "links": {"project": "#", "pdf": "#", "code": "#"},
+            "links": {"project": "#", "pdf": "https://arxiv.org/pdf/2610.13870", "code": "https://github.com/Pasl4/aria"},
             "authors": ["Pascal Sowietzki", "Steffen Holter", "Yannick Metz", "Emil Kasper", "Mennatallah El-Assady"],
             "venue": "[Under Review]",
             "year": 2026

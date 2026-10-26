@@ -1,5 +1,19 @@
 {
-    "about": "I work at the intersection of HCI and responsible AI, studying how people collaborate with increasingly agentic AI systems on complex tasks. I design and develop interactive systems that adapt to practitioners’ needs, with a focus on clarifying intent, retaining human control, and supporting shared reasoning over extended collaborations.", 
+    "about": "My research focuses on human–AI collaboration, specifically how people allocate initiative to AI, retain control over delegated work, and verify that the results reflect their intent.",
+    "about_focus": [
+        [
+            {"text": "I’m particularly interested in clarification and personalization. An agent can infer what someone wants from "},
+            {"text": "context and past interactions", "href": "https://arxiv.org/abs/2607.04501"},
+            {"text": ", or it can ask. Asking too often is a burden, but misinterpreting even a small ambiguity can produce a very different result. I build methods that help agents recognize when their understanding is incomplete, and interfaces that let people "},
+            {"text": "inspect and refine that understanding", "href": "https://arxiv.org/abs/2610.20227"},
+            {"text": " without relying on the model’s own assurances."}
+        ],
+        [
+            {"text": "I also study when agents should act on their own and when they should seek help. In recent work, we used reinforcement learning to "},
+            {"text": "learn when to consult an advisor agent", "href": "https://arxiv.org/abs/2610.13870"},
+            {"text": ". Longer term, I want to understand how shared deliberation and mutual critique between people and agents can make these systems more reliable."}
+        ]
+    ],
     "looking_for": {"lead": "PhD research internships (summer '27) on", "topics": ["human-AI collaboration", "agentic AI", "interactive systems"]},
     "cv": "/cv.pdf",
     
