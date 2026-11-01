@@ -15,10 +15,11 @@ export const SITE_URL = "https://www.steffenholter.com";
 export const SITE_OWNER = { label: "Steffen Holter", url: "/" };
 
 /** The fixed link order. Missing links are omitted, never shown disabled. */
-export const LINK_ORDER = ["paper", "demo", "video", "code", "data", "bibtex"];
+export const LINK_ORDER = ["paper", "proceedings", "demo", "video", "code", "data", "bibtex"];
 
 export const LINK_LABELS = {
   paper: "Paper",
+  proceedings: "Proceedings",
   demo: "Demo",
   video: "Video",
   code: "Code",

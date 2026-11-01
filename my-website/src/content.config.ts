@@ -54,7 +54,8 @@ const projects = defineCollection({
         // Code is optional because not every paper has a public repo yet.
         links: z
           .object({
-            paper: url.optional(),
+            paper: z.union([url, z.string().regex(/^\/(?!\/).*\.pdf$/, "must be a local PDF path or absolute http(s) URL")]).optional(),
+            proceedings: url.optional(),
             demo: url.optional(),
             video: url.optional(),
             code: url.optional(),

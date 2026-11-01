@@ -42,10 +42,10 @@ export type LinkKey = (typeof LINK_TYPES)[number]['key']
 export type PublicationLinkMap = Partial<Record<LinkKey, string>>
 
 /**
- * Project pages stay at their URLs, but the homepage icon is hidden for now.
- * Remove a key from this set to show that link again.
+ * Project pages stay at their URLs. Only these are linked from the homepage for now.
+ * Add a path here to show that publication's project button.
  */
-const HIDDEN_LINK_KEYS = new Set<LinkKey>(['project'])
+const VISIBLE_PROJECT_HREFS = new Set(['/projects/uxcascade/'])
 
 interface PublicationLinksProps {
   links?: PublicationLinkMap
@@ -53,7 +53,13 @@ interface PublicationLinksProps {
 }
 
 function PublicationLinks({ links, title }: PublicationLinksProps) {
-  const present = LINK_TYPES.filter(t => !HIDDEN_LINK_KEYS.has(t.key) && isFilledLink(links?.[t.key]))
+  const present = LINK_TYPES.filter(t => {
+    const href = links?.[t.key]
+    if (!isFilledLink(href)) return false
+    if (t.key !== 'project') return true
+    const path = href.endsWith('/') ? href : `${href}/`
+    return VISIBLE_PROJECT_HREFS.has(path)
+  })
   if (present.length === 0) return null
 
   return (
