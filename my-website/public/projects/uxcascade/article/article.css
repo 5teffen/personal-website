@@ -215,3 +215,6 @@ body:has(.ux-article) #citation h2,.ux-local .citation h2{font:900 32px/1.18 'Fr
 @media(max-width:650px){.gap-scene{grid-template-columns:minmax(0,1fr)}.gap-scene .prototype-stack{width:130px}.gap-scene .gap-questions{width:100%;text-align:center;align-items:center}}
 /* Slightly tighten the transition into the citation. */
 body:has(.ux-article) #citation{margin-top:-16px}
+/* Uppercase section headings within the interactive article. */
+.ux-article .section-heading h2,.ux-article #refinement h2{font-size:29px;text-transform:uppercase;line-height:1.2;letter-spacing:-.015em}
+@media(max-width:650px){.ux-article .section-heading h2,.ux-article #refinement h2{font-size:24px}}
