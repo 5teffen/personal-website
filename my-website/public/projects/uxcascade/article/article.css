@@ -218,3 +218,5 @@ body:has(.ux-article) #citation{margin-top:-16px}
 /* Uppercase section headings within the interactive article. */
 .ux-article .section-heading h2,.ux-article #refinement h2{font-size:29px;text-transform:uppercase;line-height:1.2;letter-spacing:-.015em}
 @media(max-width:650px){.ux-article .section-heading h2,.ux-article #refinement h2{font-size:24px}}
+/* Center the label beneath the full prototype fan. */
+.gap-scene .prototype-stack .diagram-label{left:0;right:0;width:100%;text-align:center}
