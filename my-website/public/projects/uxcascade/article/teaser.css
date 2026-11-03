@@ -1,0 +1,47 @@
+
+/* Teaser animation: a shared 36-second timeline, paused by the figure control. */
+@keyframes teaserReveal0{0%,96%{opacity:1}100%{opacity:0}}.teaser-reveal-0{animation:teaserReveal0 36s linear infinite}
+@keyframes teaserReveal1{0%,8.333%{opacity:0}10.278%,96%{opacity:1}100%{opacity:0}}.teaser-reveal-1{animation:teaserReveal1 36s linear infinite}
+@keyframes teaserReveal2{0%,19.444%{opacity:0}21.389%,96%{opacity:1}100%{opacity:0}}.teaser-reveal-2{animation:teaserReveal2 36s linear infinite}
+@keyframes teaserReveal3{0%,30.556%{opacity:0}32.500%,96%{opacity:1}100%{opacity:0}}.teaser-reveal-3{animation:teaserReveal3 36s linear infinite}
+@keyframes teaserReveal4{0%,41.667%{opacity:0}43.611%,96%{opacity:1}100%{opacity:0}}.teaser-reveal-4{animation:teaserReveal4 36s linear infinite}
+@keyframes teaserReveal5{0%,55.556%{opacity:0}57.500%,96%{opacity:1}100%{opacity:0}}.teaser-reveal-5{animation:teaserReveal5 36s linear infinite}
+@keyframes teaserReveal6{0%,69.444%{opacity:0}71.389%,96%{opacity:1}100%{opacity:0}}.teaser-reveal-6{animation:teaserReveal6 36s linear infinite}
+@keyframes teaserLink1{0%,6.111%{opacity:0}6.211%,96%{opacity:1}100%{opacity:0}}.teaser-link-1{animation:teaserLink1 36s linear infinite}
+@keyframes teaserDraw1{0%,6.111%{stroke-dashoffset:1}9.444%,100%{stroke-dashoffset:0}}.teaser-link-1 path{stroke-dasharray:1;animation:teaserDraw1 36s ease-in-out infinite}
+@keyframes teaserClick1{0%,5.311%{opacity:0;r:16}6.111%{opacity:1;r:16}9.444%,100%{opacity:0;r:44}}.teaser-click-1{animation:teaserClick1 36s ease-out infinite}
+@keyframes teaserLink2{0%,17.222%{opacity:0}17.322%,96%{opacity:1}100%{opacity:0}}.teaser-link-2{animation:teaserLink2 36s linear infinite}
+@keyframes teaserDraw2{0%,17.222%{stroke-dashoffset:1}20.556%,100%{stroke-dashoffset:0}}.teaser-link-2 path{stroke-dasharray:1;animation:teaserDraw2 36s ease-in-out infinite}
+@keyframes teaserClick2{0%,16.422%{opacity:0;r:16}17.222%{opacity:1;r:16}20.556%,100%{opacity:0;r:44}}.teaser-click-2{animation:teaserClick2 36s ease-out infinite}
+@keyframes teaserLink3{0%,28.333%{opacity:0}28.433%,96%{opacity:1}100%{opacity:0}}.teaser-link-3{animation:teaserLink3 36s linear infinite}
+@keyframes teaserDraw3{0%,28.333%{stroke-dashoffset:1}31.667%,100%{stroke-dashoffset:0}}.teaser-link-3 path{stroke-dasharray:1;animation:teaserDraw3 36s ease-in-out infinite}
+@keyframes teaserClick3{0%,27.533%{opacity:0;r:16}28.333%{opacity:1;r:16}31.667%,100%{opacity:0;r:44}}.teaser-click-3{animation:teaserClick3 36s ease-out infinite}
+@keyframes teaserLink4{0%,39.444%{opacity:0}39.544%,96%{opacity:1}100%{opacity:0}}.teaser-link-4{animation:teaserLink4 36s linear infinite}
+@keyframes teaserDraw4{0%,39.444%{stroke-dashoffset:1}42.778%,100%{stroke-dashoffset:0}}.teaser-link-4 path{stroke-dasharray:1;animation:teaserDraw4 36s ease-in-out infinite}
+@keyframes teaserClick4{0%,38.644%{opacity:0;r:16}39.444%{opacity:1;r:16}42.778%,100%{opacity:0;r:44}}.teaser-click-4{animation:teaserClick4 36s ease-out infinite}
+@keyframes teaserLink5{0%,53.333%{opacity:0}53.433%,96%{opacity:1}100%{opacity:0}}.teaser-link-5{animation:teaserLink5 36s linear infinite}
+@keyframes teaserDraw5{0%,53.333%{stroke-dashoffset:1}56.667%,100%{stroke-dashoffset:0}}.teaser-link-5 path{stroke-dasharray:1;animation:teaserDraw5 36s ease-in-out infinite}
+@keyframes teaserClick5{0%,52.533%{opacity:0;r:16}53.333%{opacity:1;r:16}56.667%,100%{opacity:0;r:44}}.teaser-click-5{animation:teaserClick5 36s ease-out infinite}
+@keyframes teaserLink6{0%,67.222%{opacity:0}67.322%,96%{opacity:1}100%{opacity:0}}.teaser-link-6{animation:teaserLink6 36s linear infinite}
+@keyframes teaserDraw6{0%,67.222%{stroke-dashoffset:1}70.556%,100%{stroke-dashoffset:0}}.teaser-link-6 path{stroke-dasharray:1;animation:teaserDraw6 36s ease-in-out infinite}
+@keyframes teaserClick6{0%,66.422%{opacity:0;r:16}67.222%{opacity:1;r:16}70.556%,100%{opacity:0;r:44}}.teaser-click-6{animation:teaserClick6 36s ease-out infinite}
+@keyframes teaserStep0{0%,0.000%{opacity:0;visibility:hidden}0.050%,8.283%{opacity:1;visibility:visible}8.333%,100%{opacity:0;visibility:hidden}}.teaser-step-0{animation:teaserStep0 36s linear infinite}
+@keyframes teaserStep1{0%,8.333%{opacity:0;visibility:hidden}8.383%,19.394%{opacity:1;visibility:visible}19.444%,100%{opacity:0;visibility:hidden}}.teaser-step-1{animation:teaserStep1 36s linear infinite}
+@keyframes teaserStep2{0%,19.444%{opacity:0;visibility:hidden}19.494%,30.506%{opacity:1;visibility:visible}30.556%,100%{opacity:0;visibility:hidden}}.teaser-step-2{animation:teaserStep2 36s linear infinite}
+@keyframes teaserStep3{0%,30.556%{opacity:0;visibility:hidden}30.606%,41.617%{opacity:1;visibility:visible}41.667%,100%{opacity:0;visibility:hidden}}.teaser-step-3{animation:teaserStep3 36s linear infinite}
+@keyframes teaserStep4{0%,41.667%{opacity:0;visibility:hidden}41.717%,55.506%{opacity:1;visibility:visible}55.556%,100%{opacity:0;visibility:hidden}}.teaser-step-4{animation:teaserStep4 36s linear infinite}
+@keyframes teaserStep5{0%,55.556%{opacity:0;visibility:hidden}55.606%,69.394%{opacity:1;visibility:visible}69.444%,100%{opacity:0;visibility:hidden}}.teaser-step-5{animation:teaserStep5 36s linear infinite}
+@keyframes teaserStep6{0%,69.444%{opacity:0;visibility:hidden}69.494%,83.283%{opacity:1;visibility:visible}83.333%,100%{opacity:0;visibility:hidden}}.teaser-step-6{animation:teaserStep6 36s linear infinite}
+@keyframes teaserStep7{0%,83.333%{opacity:0;visibility:hidden}83.383%,99.950%{opacity:1;visibility:visible}100.000%,100%{opacity:0;visibility:hidden}}.teaser-step-7{animation:teaserStep7 36s linear infinite}
+
+.teaser-hero .hero-label{padding:14px 42px 14px 0;min-height:46px}
+.teaser-hero .motion-controls{top:8px;right:0}
+.teaser-walkthrough{background:white;border-bottom:1px solid #111;padding-top:20px}
+.teaser-canvas{display:block;width:100%;height:auto;overflow:visible}
+.teaser-click{opacity:0;pointer-events:none}
+.teaser-steps{display:grid;min-height:0;margin-top:16px;padding:12px 16px;border-top:1px solid #bbb;background:#f2f2ef}
+.teaser-step{grid-area:1/1;opacity:0;visibility:hidden}
+.teaser-step-label{display:inline;font:700 13px/1.6 Arial,sans-serif;color:#111;margin-right:8px}
+.teaser-step p{display:inline;margin:0;font:400 13px/1.6 Arial,sans-serif;color:#333}
+@media(max-width:650px){.teaser-hero .hero-label{font-size:8px}.teaser-steps{padding:10px 12px;margin-top:12px}.teaser-step-label,.teaser-step p{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.teaser-panel,.teaser-connection{opacity:1!important}.teaser-connection path{stroke-dashoffset:0!important}.teaser-click{display:none}.teaser-step{display:none}.teaser-step-7{display:block;opacity:1;visibility:visible}}

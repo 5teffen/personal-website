@@ -1,0 +1,24 @@
+<svg width="123" height="152" viewBox="0 0 123 152" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<use xlink:href="#stroke0_1647_4716" fill="white"/>
+<mask id="stroke1_1647_4716" maskUnits="userSpaceOnUse" x="1.02148" y="2.3584" width="121" height="147" fill="black">
+<rect fill="white" x="1.02148" y="2.3584" width="121" height="147"/>
+<use xlink:href="#stroke0_1647_4716"/>
+</mask>
+<path d="M102.944 141.717H20.0552C13.4092 141.717 8.02148 136.329 8.02148 129.683V21.3921C8.02148 14.7461 13.4092 9.3584 20.0552 9.3584H102.944C109.59 9.3584 114.978 14.7461 114.978 21.3921V129.683C114.978 136.329 109.59 141.717 102.944 141.717Z" stroke-width="13.3696" stroke="#474747" mask="url(#stroke1_1647_4716)"/>
+<path d="M49.6094 34.9121H102.493" stroke-width="7.22022" stroke-linecap="round" stroke="#B2B2B2"/>
+<path d="M49.6094 63.0078H102.493" stroke-width="7.22022" stroke-linecap="round" stroke="#B2B2B2"/>
+<path d="M49.6094 89.4492H102.493" stroke-width="7.22022" stroke-linecap="round" stroke="#B2B2B2"/>
+<path d="M49.6094 117.544H102.493" stroke-width="7.22022" stroke-linecap="round" stroke="#B2B2B2"/>
+<path d="M22.1885 36.8535L25.7714 40.0595" stroke-width="3.43726" stroke-linecap="round" stroke="#474747"/>
+<path d="M26.1145 39.8514L34.0866 31.2751" stroke-width="3.43726" stroke-linecap="round" stroke="#474747"/>
+<path d="M22.1885 64.9483L25.7714 68.1542" stroke-width="3.43726" stroke-linecap="round" stroke="#474747"/>
+<path d="M26.1145 67.9451L34.0866 59.3689" stroke-width="3.43726" stroke-linecap="round" stroke="#474747"/>
+<path d="M22.1885 91.3906L25.7714 94.5966" stroke-width="3.43726" stroke-linecap="round" stroke="#474747"/>
+<path d="M26.1145 94.3885L34.0866 85.8122" stroke-width="3.43726" stroke-linecap="round" stroke="#474747"/>
+<path d="M22.9746 123.218L32.2481 113.242" stroke-width="3.41695" stroke-linecap="round" stroke="#474747"/>
+<path d="M32.248 123.218L22.9746 113.242" stroke-width="3.41695" stroke-linecap="round" stroke="#474747"/>
+<defs>
+<path id="stroke0_1647_4716" d="M20.0552 141.717H102.944C109.59 141.717 114.978 136.329 114.978 129.683V21.3921C114.978 14.7461 109.59 9.3584 102.944 9.3584H20.0552C13.4092 9.3584 8.02148 14.7461 8.02148 21.3921V129.683C8.02148 136.329 13.4092 141.717 20.0552 141.717Z"/>
+</defs>
+</svg>

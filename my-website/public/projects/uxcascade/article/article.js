@@ -7,7 +7,7 @@
   function setMotion(figure, paused) {
     figure.classList.toggle('is-paused', paused);
     const button = figure.querySelector('[data-motion]');
-    if (button) button.textContent = paused ? 'Play animation' : 'Pause animation';
+    if (button) { button.textContent = paused ? '▶' : 'Ⅱ'; button.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation'); button.title = paused ? 'Play animation' : 'Pause animation'; button.setAttribute('aria-pressed', String(paused)); }
   }
   const observer = new IntersectionObserver(entries => entries.forEach(entry => {
     entry.target.classList.toggle('is-offscreen', !entry.isIntersecting);
@@ -27,24 +27,18 @@
       setMotion(figure, false); syncAllButton();
     });
   });
-  // The integrated Astro page receives its own motion control next to the hero.
-  let allButton = document.getElementById('all-motion');
-  if (!allButton) {
-    allButton = document.createElement('button');
-    allButton.id = 'all-motion'; allButton.type = 'button';
-    document.querySelector('.ux-hero-figure .motion-controls')?.append(allButton);
-  }
-  function syncAllButton() {
-    allPaused = figures.every(f => f.classList.contains('is-paused'));
-    if (allButton) allButton.textContent = allPaused ? 'Play all motion' : 'Pause all motion';
-  }
-  allButton?.addEventListener('click', () => {
-    allPaused = !figures.every(f => f.classList.contains('is-paused'));
-    figures.forEach(f => setMotion(f, allPaused)); syncAllButton();
-  });
-  reduced.addEventListener('change', event => { if (event.matches) { figures.forEach(f => setMotion(f, true)); syncAllButton(); } });
+  const allButton = null;
+  function syncAllButton() { allPaused = reduced.matches; }
+  reduced.addEventListener('change', event => { figures.forEach(f => setMotion(f, event.matches)); syncAllButton(); });
   document.addEventListener('visibilitychange', () => document.documentElement.classList.toggle('ux-motion-paused', document.hidden));
-  syncAllButton();
+  const articleDisclosure = document.querySelector('.article-disclosure');
+  function revealLinkedSection() {
+    const id = location.hash.slice(1);
+    const section = id && document.getElementById(id);
+    if (section && articleDisclosure?.contains(section)) { articleDisclosure.open = true; requestAnimationFrame(() => section.scrollIntoView()); }
+  }
+  window.addEventListener('hashchange', revealLinkedSection);
+  revealLinkedSection();
 
   const traceDemo = document.querySelector('.reasoning-demo');
   const traceViewport = traceDemo.querySelector('.trace-viewport');
@@ -58,7 +52,7 @@
   let processingTimer = null;
   function stopProcessing() {
     clearTimeout(processingTimer); processingTimer = null;
-    processingButton.textContent = 'Play transformation';
+    processingButton.textContent = '▶'; processingButton.setAttribute('aria-label', 'Play transformation');
   }
   function showTrace(stage) {
     traceDemo.dataset.traceStage = stage;
@@ -70,10 +64,10 @@
   }
   function playProcessing() {
     if (processingTimer) { stopProcessing(); return; }
-    showTrace('raw'); processingButton.textContent = 'Pause transformation';
+    showTrace('raw'); processingButton.textContent = 'Ⅱ'; processingButton.setAttribute('aria-label', 'Pause transformation');
     processingTimer = setTimeout(() => {
       showTrace('extract');
-      processingTimer = setTimeout(() => { showTrace('organize'); stopProcessing(); }, 6500);
+      processingTimer = setTimeout(() => { showTrace('organize'); processingTimer = setTimeout(() => { processingTimer = null; playProcessing(); }, 6500); }, 6500);
     }, 5000);
   }
   processingButton.addEventListener('click', () => { processingSeen = true; playProcessing(); });
@@ -86,7 +80,7 @@
   let processingSeen = false;
   new IntersectionObserver(entries => entries.forEach(entry => {
     if (!entry.isIntersecting) { stopProcessing(); return; }
-    if (!processingSeen) { processingSeen = true; if (!reduced.matches && !allPaused) playProcessing(); }
+    if (!processingSeen && !reduced.matches && !allPaused && !processingTimer) playProcessing();
   }), {threshold: 0.35}).observe(traceDemo);
 
   const editScene = document.querySelector('.edit-scene');

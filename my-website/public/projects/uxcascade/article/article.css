@@ -127,3 +127,65 @@ body:has(.ux-article) .project-header{padding-bottom:28px;border-top:4px solid c
 
 /* Keep this article header focused on the author link. */
 body:has(.ux-article) .site-header .site-nav > a[href="/projects/"]{display:none}
+
+/* Original SVG exports, with no CSS reconstruction of the numbered markers. */
+.workflow-stop .workflow-circle{background:transparent;border:0;outline:0;border-radius:50%}
+.workflow-circle img{width:100%;height:100%;object-fit:contain;display:block}
+.prototype-stack .prototype{object-fit:contain;background:transparent}
+
+/* Compact landing page with an optional long-form article. */
+.article-disclosure{margin:0 0 28px}
+.article-toggle{display:flex;align-items:center;gap:24px;list-style:none;cursor:pointer;padding:22px 18px;border:3px solid #111;background:#fff;color:#111}
+.article-toggle::-webkit-details-marker{display:none}
+.article-toggle>span:first-child{font:11px/1.5 var(--u-mono)}
+.article-toggle strong{font:900 20px/1.3 var(--u-heading);flex:1}
+.article-toggle-icon{font:32px/1 Arial;transition:transform .2s}
+.article-disclosure[open]>.article-toggle .article-toggle-icon{transform:rotate(45deg)}
+.article-toggle:hover{background:#ededdf}.article-toggle:focus-visible{outline:3px solid #0165dc;outline-offset:5px}
+.article-disclosure>.article-nav{margin:0 0 38px;padding:20px 0;justify-content:flex-start}
+body:has(.ux-article) .link-row ul{gap:12px}
+body:has(.ux-article) .link-row li+li::before{display:none}
+body:has(.ux-article) .link-row a,body:has(.ux-article) .link-row .bibtex-toggle,.ux-local .paper-links a{border:3px solid #111;background:white;color:#111;padding:10px 16px;font:900 16px/1.2 var(--u-heading);text-transform:uppercase;text-decoration:none}
+body:has(.ux-article) .link-row a:hover,body:has(.ux-article) .link-row .bibtex-toggle:hover,.ux-local .paper-links a:hover{background:#111;color:white}
+body:has(.ux-article) .project-header .venue,.ux-local .venue{margin-top:20px!important;margin-bottom:26px!important;line-height:1.7}
+[data-animation]{position:relative}
+[data-animation] .motion-controls{display:block!important;position:absolute;top:8px;right:8px;margin:0;z-index:4}
+[data-animation] .motion-controls button,#play-processing{width:30px;height:30px;padding:0;border:1px solid #777;background:white;color:#111;font:16px/1 Arial;cursor:pointer}
+.ux-hero-figure .hero-label{padding-right:46px}
+.prototype-stack .prototype{background:white;animation-delay:0s!important;animation-fill-mode:both;height:auto}
+.prototype-stack .p0{top:0;left:0;--dx:0px;--dy:0px}
+.prototype-stack .p1{top:25px;left:25px;--dx:25px;--dy:25px}
+.prototype-stack .p2{top:50px;left:50px;--dx:50px;--dy:50px}
+.ux-article #refinement h2{font-size:clamp(24px,2.65vw,34px)}
+.gap-questions{font-size:18px}
+@media(max-width:650px){.article-toggle{gap:14px;padding:17px 12px;flex-wrap:wrap}.article-toggle>span:first-child{flex-basis:100%}.article-toggle strong{font-size:18px}.prototype-stack .p1{top:20px;left:15px;--dx:15px;--dy:20px}.prototype-stack .p2{top:40px;left:30px;--dx:30px;--dy:40px}.gap-questions{align-items:flex-start;flex-direction:column;font-size:14px}.ux-article #refinement h2{font-size:27px}}
+body:has(.ux-article) .project-header .link-row a,body:has(.ux-article) .project-header .link-row .bibtex-toggle{display:inline-block;padding:12px 18px;color:#111;font:900 18px/1.2 'Franklin Gothic Heavy','Arial Black',Arial,sans-serif;background:#fff;border:3px solid #111;text-decoration:none}
+body:has(.ux-article) .project-header .link-row a:hover,body:has(.ux-article) .project-header .link-row .bibtex-toggle:hover{background:#111;color:#fff}
+
+/* Lighter controls and a clearer reading hierarchy. */
+.article-toggle{justify-content:space-between;padding:18px 20px}
+.article-toggle>span:first-child{font:700 13px/1.5 var(--u-mono);flex-basis:auto}
+.article-toggle-icon{font-size:26px}
+body:has(.ux-article) .project-header .link-row a,body:has(.ux-article) .project-header .link-row .bibtex-toggle,.ux-local .paper-links a,.ux-article .read-paper a{display:inline-block;padding:8px 12px;border:2px solid #111;background:#fff;color:#111;font:900 13px/1.3 'Franklin Gothic Heavy','Arial Black',Arial,sans-serif;text-transform:uppercase;text-decoration:none}
+.ux-article .read-paper a:hover{background:#111;color:#fff}
+body:has(.ux-article) .link-row ul{gap:10px}
+.ux-hero-figure .motion-controls{top:50px;right:10px}
+.ux-hero-figure .hero-label{padding-right:0;min-height:40px;align-items:center}
+.ux-hero-figure .cascade-scene{padding-top:42px}
+.ux-article .section-heading h2,.ux-article #refinement h2{font-size:32px;font-weight:900;line-height:1.18;letter-spacing:-.025em}
+.prototype-stack .prototype{background:transparent}
+.gap-scene{grid-template-columns:190px minmax(0,1fr) 190px;padding:42px 24px 28px;gap:22px}
+.ux-article .gap-questions{font-size:16px;padding-left:18px;gap:20px}
+.gap-questions span{white-space:nowrap}
+.human-focus{padding-left:16px;text-align:center}
+.human-focus .motif{height:82px;width:76px;display:block}
+.human-evidence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:22px}
+.human-evidence img{width:44px;height:44px;object-fit:contain;max-width:100%;display:block;margin:0 auto 8px}
+.human-evidence span{display:block;font:9px/1.4 Arial,sans-serif}
+.coverage-row{--category-color:#c7d8e6}
+.coverage-row:nth-child(3){--category-color:#f7c6c7}
+.coverage-row:nth-child(4){--category-color:#cce4cc}
+.coverage-row .coverage-track i,.coverage-row .coverage-track.human i{background:var(--category-color);border-color:#6a6a6a}
+.coverage-row>span:first-child{border-left:8px solid var(--category-color);padding-left:12px}
+@media(min-width:651px) and (max-width:1000px){.gap-scene{grid-template-columns:150px minmax(0,1fr);gap:24px}.human-focus{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:24px;border-left:0;border-top:1px solid var(--u-rule);padding-top:20px}.human-focus .motif{margin:0;width:60px;height:65px}.human-evidence{margin-top:0;gap:20px}.human-evidence img{width:50px}.human-focus>.diagram-label{max-width:80px}.ux-article .gap-questions{font-size:16px}}
+@media(max-width:650px){.article-toggle>span:first-child{flex-basis:auto}.gap-scene{grid-template-columns:1fr 1fr;padding:40px 16px 25px;gap:20px}.human-focus{grid-column:2;grid-row:1;padding:0}.human-focus .motif{width:64px;height:70px}.human-evidence{gap:5px;margin-top:14px}.human-evidence img{height:32px;width:32px}.human-evidence span{font-size:8px}.ux-article .gap-questions{grid-column:1/-1;font-size:15px;padding:16px 0 0;gap:12px}.ux-article .section-heading h2,.ux-article #refinement h2{font-size:27px}.ux-hero-figure .motion-controls{top:48px}.coverage-row>span:first-child{border-width:5px;padding-left:7px}}
