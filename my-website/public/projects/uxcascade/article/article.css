@@ -189,3 +189,29 @@ body:has(.ux-article) .link-row ul{gap:10px}
 .coverage-row>span:first-child{border-left:8px solid var(--category-color);padding-left:12px}
 @media(min-width:651px) and (max-width:1000px){.gap-scene{grid-template-columns:150px minmax(0,1fr);gap:24px}.human-focus{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:24px;border-left:0;border-top:1px solid var(--u-rule);padding-top:20px}.human-focus .motif{margin:0;width:60px;height:65px}.human-evidence{margin-top:0;gap:20px}.human-evidence img{width:50px}.human-focus>.diagram-label{max-width:80px}.ux-article .gap-questions{font-size:16px}}
 @media(max-width:650px){.article-toggle>span:first-child{flex-basis:auto}.gap-scene{grid-template-columns:1fr 1fr;padding:40px 16px 25px;gap:20px}.human-focus{grid-column:2;grid-row:1;padding:0}.human-focus .motif{width:64px;height:70px}.human-evidence{gap:5px;margin-top:14px}.human-evidence img{height:32px;width:32px}.human-evidence span{font-size:8px}.ux-article .gap-questions{grid-column:1/-1;font-size:15px;padding:16px 0 0;gap:12px}.ux-article .section-heading h2,.ux-article #refinement h2{font-size:27px}.ux-hero-figure .motion-controls{top:48px}.coverage-row>span:first-child{border-width:5px;padding-left:7px}}
+
+/* Keep figure explanations in the prose and give the prototype fan its own space. */
+.gap-scene{grid-template-columns:230px minmax(0,1fr);gap:30px;padding:42px 28px 28px}
+.gap-scene .prototype-stack{grid-column:1;grid-row:1;min-width:0;height:180px}
+.gap-scene .gap-questions{grid-column:2;grid-row:1;white-space:normal;justify-content:center;padding:0 0 0 24px;border-left:1px solid var(--u-rule);border-top:0}
+.gap-scene .gap-questions span{white-space:normal}
+.gap-scene .human-focus{grid-column:1/-1;grid-row:2;display:flex;align-items:center;justify-content:center;gap:30px;border-left:0;border-top:1px solid var(--u-rule);padding:22px 0 0}
+.gap-scene .human-focus>.diagram-label{max-width:none}
+.gap-scene .human-evidence{margin:0;gap:30px}
+.gap-scene .human-evidence img{width:60px;height:50px}
+.gap-scene .human-evidence span{font-size:10px}
+body:has(.ux-article) #citation h2,.ux-local .citation h2{font:900 32px/1.18 'Franklin Gothic Heavy','Arial Black',Arial,sans-serif;letter-spacing:-.025em;color:#1b1f24}
+@media(max-width:1024px) and (min-width:651px){.gap-scene{grid-template-columns:190px minmax(0,1fr);gap:24px}}
+@media(max-width:650px){.gap-scene{grid-template-columns:minmax(0,1fr);padding:42px 18px 24px;gap:22px}.gap-scene .prototype-stack{width:160px;height:125px;justify-self:center}.gap-scene .gap-questions{grid-column:1;grid-row:2;padding:18px 0 0;border-left:0;border-top:1px solid var(--u-rule);font-size:15px}.gap-scene .human-focus{grid-column:1;grid-row:3;flex-direction:column;gap:18px}.gap-scene .human-evidence{gap:24px}.gap-scene .human-evidence img{width:56px;height:45px}body:has(.ux-article) #citation h2,.ux-local .citation h2{font-size:27px}}
+/* No divider beneath the expanded article navigation. */
+.article-disclosure>.article-nav{border-bottom:0}
+
+/* Center the two parts of the creation–evaluation diagram; keep supplied SVG fills intact. */
+.gap-scene{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.gap-scene .prototype-stack{width:220px;justify-self:center}
+.gap-scene .gap-questions{justify-self:center;align-items:center;text-align:center;padding-left:0;border-left:0}
+.gap-scene .prototype-stack .prototype{background:none}
+@media(min-width:651px) and (max-width:1024px){.gap-scene .prototype-stack{width:180px}}
+@media(max-width:650px){.gap-scene{grid-template-columns:minmax(0,1fr)}.gap-scene .prototype-stack{width:130px}.gap-scene .gap-questions{width:100%;text-align:center;align-items:center}}
+/* Slightly tighten the transition into the citation. */
+body:has(.ux-article) #citation{margin-top:-16px}
